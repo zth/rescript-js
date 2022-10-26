@@ -8,13 +8,6 @@
 // https://caml.inria.fr/pub/docs/manual-ocaml/polymorphism.html#ss:variance:abstract-data-types
 type t<+'a> = promise<'a>
 
-// JsError is currently a shim exception and will be deprecated for
-// ReScript version >= 9.0.
-//
-// See following merged compiler PR for more context:
-// https://github.com/rescript-lang/rescript-compiler/pull/4905
-exception JsError(Js.Exn.t)
-
 @ocaml.doc("
 [resolve(value)] creates a resolved Promise with a given `value`
 
@@ -116,8 +109,7 @@ Promise.resolve(5)
 ->ignore
 ```
 ")
-@send
-external then: (t<'a>, @uncurry ('a => t<'b>)) => t<'b> = "then"
+let then: (promise<'a>, 'a => promise<'b>) => promise<'b>
 
 @ocaml.doc("
 `thenResolve(promise, callback)` converts an encapsulated value of a promise into another promise wrapped value. 

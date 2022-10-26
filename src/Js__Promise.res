@@ -1,15 +1,14 @@
 type t<+'a> = promise<'a>
 
-exception JsError(Js.Exn.t)
-external unsafeToJsExn: exn => Js.Exn.t = "%identity"
-
 @new
 external make: ((@uncurry (. 'a) => unit, (. 'e) => unit) => unit) => t<'a> = "Promise"
 
 @val @scope("Promise")
 external resolve: 'a => t<'a> = "resolve"
 
-@send external then: (t<'a>, @uncurry ('a => t<'b>)) => t<'b> = "then"
+let then: (promise<'a>, 'a => promise<'b>) => promise<'b> = %raw(`function(p, cont) {
+  Promise.resolve(p).then(cont)
+}`)
 
 @send
 external thenResolve: (t<'a>, @uncurry ('a => 'b)) => t<'b> = "then"
@@ -37,23 +36,9 @@ external all5: ((t<'a>, t<'b>, t<'c>, t<'d>, t<'e>)) => t<('a, 'b, 'c, 'd, 'e)> 
 @scope("Promise") @val
 external all6: ((t<'a>, t<'b>, t<'c>, t<'d>, t<'e>, t<'f>)) => t<('a, 'b, 'c, 'd, 'e, 'f)> = "all"
 
-@send
-external _catch: (t<'a>, @uncurry (exn => t<'a>)) => t<'a> = "catch"
-
-let catch = (promise, callback) => {
-  _catch(promise, err => {
-    // In future versions, we could use the better version:
-    /* callback(Js.Exn.anyToExnInternal(e)) */
-
-    // for now we need to bring our own JsError type
-    let v = if Js.Exn.isCamlExceptionOrOpenVariant(err) {
-      err
-    } else {
-      JsError(unsafeToJsExn(err))
-    }
-    callback(v)
-  })
-}
+let catch: (promise<'a>, exn => promise<'a>) => promise<'a> = %raw(`function(p, cont) {
+  Promise.resolve(p).catch(cont)
+}`)
 
 @scope("Promise") @val
 external race: array<t<'a>> => t<'a> = "race"
