@@ -231,3 +231,6 @@ external all6: ((t<'a>, t<'b>, t<'c>, t<'d>, t<'e>, t<'f>)) => t<('a, 'b, 'c, 'd
 `done` is a safe way to ignore a promise. If a value is anything else than a promise, it will raise a type error.
 ")
 external done: Js.Promise.t<'a> => unit = "%ignore"
+
+external unsafe_async: 'a => promise<'a> = "%identity"
+external unsafe_await: promise<'a> => 'a = "?await"
