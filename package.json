@@ -13,6 +13,6 @@
   "author": "bloodyowl <bloodyowl@icloud.com>",
   "license": "MIT",
   "devDependencies": {
-    "rescript": "^10.0.0-rc.1"
+    "rescript": "^10.1.0-rc.2"
   }
 }
