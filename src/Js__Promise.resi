@@ -179,7 +179,7 @@ let promises = [resolve(1), resolve(2), resolve(3)]
 
 all(promises)
 ->then((results) => {
-  Belt.Array.forEach(results, (num) => {
+  ReScriptJs.Js.Array.forEach(results, (num) => {
     Js.log2(\"Number: \", num)
   })
 
