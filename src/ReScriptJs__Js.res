@@ -61,6 +61,7 @@ module MapperRt = Js.MapperRt
 module Internal = Js.Internal
 module Re = Js__RegExp // needed for the %re sugar
 module Exn = Js.Exn
+module Option = Js__Option
 
 type null<+'a> = Js.null<'a>
 
