@@ -43,7 +43,7 @@ let catch: (promise<'a>, exn => promise<'a>) => promise<'a> = %raw(`function(p, 
 @scope("Promise") @val
 external race: array<t<'a>> => t<'a> = "race"
 
-external done: Js.Promise.t<'a> => unit = "%ignore"
+external done: promise<'a> => unit = "%ignore"
 
 external unsafe_async: 'a => promise<'a> = "%identity"
 external unsafe_await: promise<'a> => 'a = "?await"
