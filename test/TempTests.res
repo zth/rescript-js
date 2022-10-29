@@ -1,4 +1,4 @@
-open ReScriptJs
+open ReScriptStdLib
 
 Console.info("")
 Console.info("Array")
