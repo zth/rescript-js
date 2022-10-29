@@ -1,2 +1,0 @@
-include ReScriptJs
-include ReScriptJs__Pervasives
