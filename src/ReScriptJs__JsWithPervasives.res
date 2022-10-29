@@ -1,2 +1,2 @@
-include ReScriptJs__Js
+include ReScriptJs
 include ReScriptJs__Pervasives
