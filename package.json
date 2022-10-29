@@ -1,6 +1,6 @@
 {
-  "name": "rescript-js",
-  "version": "1.0.0-beta.2",
+  "name": "rescript-stdlib",
+  "version": "1.0.0-alpha.1",
   "scripts": {
     "clean": "rescript clean",
     "build": "rescript",
