@@ -36,9 +36,17 @@ external all5: ((t<'a>, t<'b>, t<'c>, t<'d>, t<'e>)) => t<('a, 'b, 'c, 'd, 'e)> 
 @scope("Promise") @val
 external all6: ((t<'a>, t<'b>, t<'c>, t<'d>, t<'e>, t<'f>)) => t<('a, 'b, 'c, 'd, 'e, 'f)> = "all"
 
-let catch: (promise<'a>, exn => promise<'a>) => promise<'a> = %raw(`function(p, cont) {
+type error
+
+let _catch: (promise<'a>, error => promise<'a>) => promise<'a> = %raw(`function(p, cont) {
   Promise.resolve(p).catch(cont)
 }`)
+
+let catch = (promise: promise<'a>, callback: exn => promise<'a>): promise<'a> => {
+  _catch(promise, err => {
+    callback(Js.Exn.anyToExnInternal(err))
+  })
+}
 
 @scope("Promise") @val
 external race: array<t<'a>> => t<'a> = "race"
