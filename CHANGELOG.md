@@ -5,7 +5,7 @@
 - `getUnsafe` is added (copied from `Belt`)
 - `setUnsafe` is added (copied from `Belt`)
 - `reverse` is added (copied from `Belt`), in addition to existing `reverseInPlace`, which is zero cost but does not produce a new array.
-- `keepMap` and `keepMapU` is added from `Belt`, but **renamed to `filterMap`**. Rationale: `filterMap` is closed to the JS convention of naming things filter. It's also available in other languages like Rust. `keep` et al can confuse beginners, who're bound to be looking for `filter` style names since that's what JS has.
+- `keepMap` and `keepMapU` is added from `Belt`, but **renamed to `filterMap`**. Rationale: `filterMap` is closer to the JS convention of naming things filter. It's also available in other languages like Rust. `keep` et al can confuse beginners, who're bound to be looking for `filter` style names since that's what JS has.
 - `shuffle` and `shuffleInPlace` is added (copied from `Belt`).
 - `flatMap` is added (copied from `Belt`, but using native `map` and `concat` functions).
 
