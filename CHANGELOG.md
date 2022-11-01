@@ -12,3 +12,8 @@
 ## Float
 
 - `fromString` is copied from `Belt`. Main difference is that `fromString` now returns an `option` that's `None` if the parsed float is `NaN`.
+
+## String
+
+- `searchOpt`/`indexOfOpt`/`lastIndexOfOpt` added. Convenience methods for returning an `option` that's `None` instead of returning `-1` for not found.
+- Added bindings for `localeCompare`.

@@ -23,9 +23,19 @@
 @send external includesFrom: (string, string, ~from: int) => bool = "includes"
 
 @send external indexOf: (string, string) => int = "indexOf"
+let indexOfOpt = (s, search) =>
+  switch indexOf(s, search) {
+  | -1 => None
+  | index => Some(index)
+  }
 @send external indexOfFrom: (string, string, ~from: int) => int = "indexOf"
 
 @send external lastIndexOf: (string, string) => int = "lastIndexOf"
+let lastIndexOfOpt = (s, search) =>
+  switch lastIndexOf(s, search) {
+  | -1 => None
+  | index => Some(index)
+  }
 @send external lastIndexOfFrom: (string, string, ~from: int) => int = "lastIndexOf"
 
 @return(nullable) @send
@@ -82,6 +92,11 @@ external unsafeReplaceRegExpBy3: (
 ) => string = "replace"
 
 @send external search: (string, Js__RegExp.t) => int = "search"
+let searchOpt = (s, re) =>
+  switch search(s, re) {
+  | -1 => None
+  | index => Some(index)
+  }
 
 @send external slice: (string, ~start: int, ~end: int) => string = "slice"
 @send external sliceToEnd: (string, ~start: int) => string = "slice"
@@ -116,3 +131,5 @@ external splitByRegExpAtMost: (string, Js__RegExp.t, ~limit: int) => array<optio
 @get_index external getSymbol: (string, Js__Symbol.t) => option<'a> = ""
 @get_index external getSymbolUnsafe: (string, Js__Symbol.t) => 'a = ""
 @set_index external setSymbol: (string, Js__Symbol.t, 'a) => unit = ""
+
+@send external localeCompare: (string, string) => float = "localeCompare"
