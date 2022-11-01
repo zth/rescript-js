@@ -8,3 +8,7 @@
 - `keepMap` and `keepMapU` is added from `Belt`, but **renamed to `filterMap`**. Rationale: `filterMap` is closed to the JS convention of naming things filter. It's also available in other languages like Rust. `keep` et al can confuse beginners, who're bound to be looking for `filter` style names since that's what JS has.
 - `shuffle` and `shuffleInPlace` is added (copied from `Belt`).
 - `flatMap` is added (copied from `Belt`, but using native `map` and `concat` functions).
+
+## Float
+
+- `fromString` is copied from `Belt`. Main difference is that `fromString` now returns an `option` that's `None` if the parsed float is `NaN`.
