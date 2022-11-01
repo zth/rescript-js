@@ -1,172 +1,75 @@
 @val external from: 'a => array<'b> = "Array.from"
 @val external fromWithMap: ('a, 'b => 'c) => array<'c> = "Array.from"
-
 @val external fromArrayLike: Js.Array2.array_like<'a> => array<'a> = "Array.from"
 @val
 external fromArrayLikeWithMap: (Js.Array2.array_like<'a>, 'a => 'b) => array<'a> = "Array.from"
-
 @val external fromIterator: Js__Iterator.t<'a> => array<'a> = "Array.from"
 @val external fromIteratorWithMap: (Js__Iterator.t<'a>, 'a => 'c) => array<'a> = "Array.from"
-
 @val external isArray: 'a => bool = "Array.isArray"
-
 @get external length: array<'a> => int = "length"
-
 @send external copyAllWithin: (array<'a>, ~target: int) => array<'a> = "copyWithin"
-
 @send
 external copyWithinToEnd: (array<'a>, ~target: int, ~start: int) => array<'a> = "copyWithin"
-
 @send
 external copyWithin: (array<'a>, ~target: int, ~start: int, ~end: int) => array<'a> = "copyWithin"
-
 @send external fillAllInPlace: (array<'a>, 'a) => array<'a> = "fill"
-
 @send external fillInPlaceToEnd: (array<'a>, 'a, ~start: int) => array<'a> = "fill"
-
 @send external fillInPlace: (array<'a>, 'a, ~start: int, ~end: int) => array<'a> = "fill"
-
 @send external pop: array<'a> => option<'a> = "pop"
-
 @send external push: (array<'a>, 'a) => unit = "push"
-
 @variadic @send external pushMany: (array<'a>, array<'a>) => unit = "push"
-
 @send external reverseInPlace: array<'a> => array<'a> = "reverse"
-
 @send external shift: array<'a> => option<'a> = "shift"
-
 @send external sortInPlace: (array<'a>, ('a, 'a) => int) => array<'a> = "sort"
-
 @variadic @send
 external spliceInPlace: (array<'a>, ~start: int, ~remove: int, ~insert: array<'a>) => array<'a> =
   "splice"
-
 @send external unshift: (array<'a>, 'a) => unit = "unshift"
-
 @variadic @send external unshiftMany: (array<'a>, array<'a>) => unit = "unshift"
-
 @send external concat: (array<'a>, array<'a>) => array<'a> = "concat"
-
 @variadic @send external concatMany: (array<'a>, array<array<'a>>) => array<'a> = "concat"
-
 @send external includes: (array<'a>, 'a) => bool = "includes"
-
 @send external indexOf: (array<'a>, 'a) => int = "indexOf"
-let indexOfOpt = (arr, item) =>
-  switch arr->indexOf(item) {
-  | -1 => None
-  | index => Some(index)
-  }
+let indexOfOpt: (array<'a>, 'a) => option<int>
 @send external indexOfFrom: (array<'a>, 'a, ~from: int) => int = "indexOf"
-
 @send external joinWith: (array<'a>, string) => string = "join"
-
 @send external lastIndexOf: (array<'a>, 'a) => int = "lastIndexOf"
-let lastIndexOfOpt = (arr, item) =>
-  switch arr->lastIndexOf(item) {
-  | -1 => None
-  | index => Some(index)
-  }
+let lastIndexOfOpt: (array<'a>, 'a) => option<int>
 @send external lastIndexOfFrom: (array<'a>, 'a, ~from: int) => int = "lastIndexOf"
-
 @send external slice: (array<'a>, ~from: int, ~end: int) => array<'a> = "slice"
 @send external sliceToEnd: (array<'a>, ~from: int) => array<'a> = "slice"
 @send external copy: array<'a> => array<'a> = "slice"
-
 @send external toString: array<'a> => string = "toString"
 @send external toLocaleString: array<'a> => string = "toLocaleString"
-
 @send external every: (array<'a>, 'a => bool) => bool = "every"
 @send external everyWithIndex: (array<'a>, ('a, int) => bool) => bool = "every"
-
 @send external filter: (array<'a>, 'a => bool) => array<'a> = "filter"
 @send external filterWithIndex: (array<'a>, ('a, int) => bool) => array<'a> = "filter"
-
 @send external find: (array<'a>, 'a => bool) => option<'a> = "find"
 @send external findWithIndex: (array<'a>, ('a, int) => bool) => option<'a> = "find"
-
 @send external findIndex: (array<'a>, 'a => bool) => int = "findIndex"
 @send external findIndexWithIndex: (array<'a>, ('a, int) => bool) => int = "findIndex"
-
 @send external forEach: (array<'a>, 'a => unit) => unit = "forEach"
 @send external forEachWithIndex: (array<'a>, ('a, int) => unit) => unit = "forEach"
-
 @send external map: (array<'a>, 'a => 'b) => array<'b> = "map"
 @send external mapWithIndex: (array<'a>, ('a, int) => 'b) => array<'b> = "map"
-
 @send external reduce: (array<'a>, ('b, 'a) => 'b, 'b) => 'b = "reduce"
 @send external reduceWithIndex: (array<'a>, ('b, 'a, int) => 'b, 'b) => 'b = "reduce"
-
 @send external reduceRight: (array<'a>, ('b, 'a) => 'b, 'b) => 'b = "reduceRight"
 @send external reduceRightWithIndex: (array<'a>, ('b, 'a, int) => 'b, 'b) => 'b = "reduceRight"
-
 @send external some: (array<'a>, 'a => bool) => bool = "some"
 @send external someWithIndex: (array<'a>, ('a, int) => bool) => bool = "some"
-
 @get_index external get: (array<'a>, int) => option<'a> = ""
 @set_index external set: (array<'a>, int, 'a) => unit = ""
-
 @get_index external getSymbol: (array<'a>, Js__Symbol.t) => option<'b> = ""
 @get_index external getSymbolUnsafe: (array<'a>, Js__Symbol.t) => 'b = ""
 @set_index external setSymbol: (array<'a>, Js__Symbol.t, 'b) => unit = ""
-
 external getUnsafe: (array<'a>, int) => 'a = "%array_unsafe_get"
 external setUnsafe: (array<'a>, int, 'a) => unit = "%array_unsafe_set"
-
-let findIndexOpt = (array: array<'a>, finder: 'a => bool): option<int> =>
-  switch findIndex(array, finder) {
-  | -1 => None
-  | index => Some(index)
-  }
-
-@new external makeUninitializedUnsafe: int => array<'a> = "Array"
-@set external truncateToLengthUnsafe: (array<'a>, int) => unit = "length"
-let swapUnsafe = (xs, i, j) => {
-  let tmp = getUnsafe(xs, i)
-  setUnsafe(xs, i, getUnsafe(xs, j))
-  setUnsafe(xs, j, tmp)
-}
-
-let reverse = xs => {
-  let len = length(xs)
-  let result = makeUninitializedUnsafe(len)
-  for i in 0 to len - 1 {
-    setUnsafe(result, i, getUnsafe(xs, len - 1 - i))
-  }
-  result
-}
-
-let shuffleInPlace = xs => {
-  let len = length(xs)
-  for i in 0 to len - 1 {
-    swapUnsafe(xs, i, Js.Math.random_int(i, len)) /* [i,len) */
-  }
-}
-
-let shuffle = xs => {
-  let result = copy(xs)
-  shuffleInPlace(result)
-  result
-}
-
-let filterMapU = (a, f) => {
-  let l = length(a)
-  let r = makeUninitializedUnsafe(l)
-  let j = ref(0)
-  for i in 0 to l - 1 {
-    let v = getUnsafe(a, i)
-    switch f(. v) {
-    | None => ()
-    | Some(v) =>
-      setUnsafe(r, j.contents, v)
-      j.contents = j.contents + 1
-    }
-  }
-  truncateToLengthUnsafe(r, j.contents)
-  r
-}
-
-let filterMap = (a, f) => filterMapU(a, (. a) => f(a))
-
-let flatMap = (a, f) => concatMany(map(a, f))
+let findIndexOpt: (array<'a>, 'a => bool) => option<int>
+let reverse: array<'a> => array<'a>
+let filterMapU: (array<'a>, (. 'a) => option<'b>) => array<'b>
+let filterMap: (array<'a>, 'a => option<'b>) => array<'b>
+let shuffle: array<'a> => array<'a>
+let shuffleInPlace: array<'a> => unit
+let flatMap: (array<'a>, 'a => 'b, array<array<'b>>) => array<'b>
