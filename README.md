@@ -17,7 +17,7 @@ Also a shout out to the authors of `Belt`, as a few key things have been incorpo
 $ yarn add @gabnor/rescript-stdlib
 ```
 
-> The package will move to the official @rescript scope soon.
+> The `@gabnor` scope is for "private" testing before the package is officially published. When officially published, it'll be under the appropriate `@rescript` scope.
 
 Then add `rescript-stdlib` to your `bsconfig.json`'s `bs-dependencies`:
 
