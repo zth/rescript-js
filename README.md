@@ -10,8 +10,9 @@ It will start its life as a separate package, but will eventually make its way i
 
 ## Acknowledgements
 
-@bloodyowl + contributors to `rescript-js` are the people who've done the heavy lifting here, since this stdlib is based fully on `rescript-js`.
-Also a shout out to the authors of `Belt`, as a few key things have been incorporated directly from `Belt`.
+- @bloodyowl + contributors to `rescript-js` are the people who've done the heavy lifting here, since this stdlib is based fully on `rescript-js`.
+- Also a shout out to the authors of `Belt`, as a few key things have been incorporated directly from `Belt`.
+- Patrick (@ryyppy) for his work on `rescript-promise`, which is fully inlined into the stdlib.
 
 ## Installation
 
@@ -91,6 +92,13 @@ This stdlib is based on `rescript-js`, but with a few tweaks and modifications. 
 
 - `searchOpt`/`indexOfOpt`/`lastIndexOfOpt` added. Convenience methods for returning an `option` instead of returning `-1` for not found.
 - Added bindings for `localeCompare`.
+
+### Promise
+
+The `Promise` module is inlined from https://github.com/ryyppy/rescript-promise, with these additions:
+
+- Jaap's `ignorePromise` PR is merged.
+- `then` and `catch` is replaced with Cristiano's "safe promises" (where nested promises do not cause runtime breakages).
 
 ### Option, List, Result
 
