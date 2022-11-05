@@ -1,5 +1,7 @@
 # rescript-stdlib
 
+**This is not officially published yet, and is in private testing.**
+
 The new standard library for ReScript. Based on `rescript-js`, with a few additions taken from `Belt`, and a few tweaks.
 
 This standard library is intended to be familiar for JS developers, easy to use, be rich enough that you don't need to reach for anything else for typical ReScript development.
