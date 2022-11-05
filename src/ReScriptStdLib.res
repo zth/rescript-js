@@ -62,6 +62,8 @@ module Internal = Js.Internal
 module Re = Js__RegExp // needed for the %re sugar
 module Exn = Js.Exn
 module Option = Js__Option
+module List = Js__List
+module Result = Js__Result
 
 type null<+'a> = Js.null<'a>
 

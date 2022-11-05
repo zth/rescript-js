@@ -92,6 +92,6 @@ This stdlib is based on `rescript-js`, but with a few tweaks and modifications. 
 - `searchOpt`/`indexOfOpt`/`lastIndexOfOpt` added. Convenience methods for returning an `option` instead of returning `-1` for not found.
 - Added bindings for `localeCompare`.
 
-### Option
+### Option, List, Result
 
-- The entire `Option` module is brought in from `Belt`. Options are widely used in the ecosystem. We want the stdlib to make working with options as convenient as possible in the non-exotic cases.
+- The above stated modules are brought in from `Belt`, since they're widely used in the ecosystem.
