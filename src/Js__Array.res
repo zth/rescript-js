@@ -48,7 +48,7 @@ external spliceInPlace: (array<'a>, ~start: int, ~remove: int, ~insert: array<'a
 
 @send external concat: (array<'a>, array<'a>) => array<'a> = "concat"
 
-@variadic @send external concatMany: (array<'a>, array<array<'a>>) => array<'a> = "concat"
+@variadic @send external concatMany: array<array<'a>> => array<'a> = "concat"
 
 @send external includes: (array<'a>, 'a) => bool = "includes"
 
