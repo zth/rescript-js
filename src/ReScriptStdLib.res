@@ -45,8 +45,8 @@ module Intl = Js__Intl
 
 module Serializer = Js__Serializer
 
-@val external window: {..} = "window"
-@val external document: {..} = "document"
+@val external window: Dom.window = "window"
+@val external document: Dom.document = "document"
 @val external globalThis: {..} = "globalThis"
 
 external null: Js__Null.t<'a> = "#null"

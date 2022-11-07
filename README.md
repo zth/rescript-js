@@ -104,3 +104,7 @@ The `Promise` module is inlined from https://github.com/ryyppy/rescript-promise,
 ### Option, List, Result
 
 - The above stated modules are brought in from `Belt`, since they're widely used in the ecosystem.
+
+### window, document
+
+- `window` and `document` are typed as `Dom.window`/`Dom.document` rather than open objects (`{..}`).
