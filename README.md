@@ -83,6 +83,7 @@ This stdlib is based on `rescript-js`, but with a few tweaks and modifications. 
 - `keepMap` and `keepMapU` is added from `Belt`, but **renamed to `filterMap`**. Rationale: `filterMap` is closer to the JS convention of naming. It's also available in other languages like Rust. `keep` et al can confuse beginners, who're bound to be looking for `filter` style names since that's what JS has.
 - `shuffle` and `shuffleInPlace` are added (copied from `Belt`).
 - `flatMap` added (copied from `Belt`, but using native `map` and `concat` functions).
+- `concatMany` is changed to have the same signature as `Js.Array2.concatMany`, which differs slightly from the original one in `rescript-js`.
 
 ### Float
 
