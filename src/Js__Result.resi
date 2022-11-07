@@ -28,9 +28,7 @@
 
   This module gives you useful utilities to create and combine `Result` data.
 */
-type t<'a, 'b> =
-  | Ok('a)
-  | /**
+/**
   The type `Result.t(result, err)` describes a variant of two states:
   `Ok(someResult)` represents a successful operation, whereby
   ``Error(someError)` signals an erronous operation.
@@ -47,7 +45,7 @@ type t<'a, 'b> =
   }
 ```
 */
-  Error('b)
+type t<'a, 'b> = result<'a, 'b>
 
 /**
   `getExn(res)`: when `res` is `Ok(n)`, returns `n` when `res` is `Error(m)`, raise an exception
