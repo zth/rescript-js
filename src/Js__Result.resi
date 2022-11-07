@@ -45,7 +45,7 @@
   }
 ```
 */
-type t<'a, 'b> = result<'a, 'b>
+type t<'a, 'b> = result<'a, 'b> = Ok('a) | Error('b)
 
 /**
   `getExn(res)`: when `res` is `Ok(n)`, returns `n` when `res` is `Error(m)`, raise an exception
