@@ -53,10 +53,43 @@ let lastIndexOfOpt: (array<'a>, 'a) => option<int>
 @send external forEachWithIndex: (array<'a>, ('a, int) => unit) => unit = "forEach"
 @send external map: (array<'a>, 'a => 'b) => array<'b> = "map"
 @send external mapWithIndex: (array<'a>, ('a, int) => 'b) => array<'b> = "map"
-@send external reduce: (array<'a>, ('b, 'a) => 'b, 'b) => 'b = "reduce"
-@send external reduceWithIndex: (array<'a>, ('b, 'a, int) => 'b, 'b) => 'b = "reduce"
-@send external reduceRight: (array<'a>, ('b, 'a) => 'b, 'b) => 'b = "reduceRight"
-@send external reduceRightWithIndex: (array<'a>, ('b, 'a, int) => 'b, 'b) => 'b = "reduceRight"
+
+let reduceU: (array<'b>, 'a, (. 'a, 'b) => 'a) => 'a
+/**
+  `reduce(xs, init, f)`
+
+  Applies `f` to each element of `xs` from beginning to end. Function `f` has two parameters: the item from the list and an “accumulator”; which starts with a value of `init`. `reduce` returns the final value of the accumulator.
+
+  ```res example
+  Array.reduce([2, 3, 4], 1, (a, b) => a + b) == 10
+
+  Array.reduce(["a", "b", "c", "d"], "", (a, b) => a ++ b) == "abcd"
+  ```
+*/
+let reduce: (array<'b>, 'a, ('a, 'b) => 'a) => 'a
+
+let reduceReverseU: (array<'b>, 'a, (. 'a, 'b) => 'a) => 'a
+/**
+  `reduceReverse(xs, init, f)`
+
+  Works like `Belt_Array.reduce`; except that function `f` is applied to each item of `xs` from the last back to the first.
+
+  ```res example
+  Array.reduceReverse(["a", "b", "c", "d"], "", (a, b) => a ++ b) == "dcba"
+  ```
+*/
+let reduceReverse: (array<'b>, 'a, ('a, 'b) => 'a) => 'a
+
+let reduceWithIndexU: (array<'a>, 'b, (. 'b, 'a, int) => 'b) => 'b
+/**
+  Applies `f` to each element of `xs` from beginning to end. Function `f` has three parameters: the item from the array and an “accumulator”, which starts with a value of `init` and the index of each element. `reduceWithIndex` returns the final value of the accumulator.
+
+  ```res example
+  Array.reduceWithIndex([1, 2, 3, 4], 0, (acc, x, i) => acc + x + i) == 16
+  ```
+*/
+let reduceWithIndex: (array<'a>, 'b, ('b, 'a, int) => 'b) => 'b
+
 @send external some: (array<'a>, 'a => bool) => bool = "some"
 @send external someWithIndex: (array<'a>, ('a, int) => bool) => bool = "some"
 @get_index external get: (array<'a>, int) => option<'a> = ""

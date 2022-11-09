@@ -1,3 +1,6 @@
+external getUnsafe: (array<'a>, int) => 'a = "%array_unsafe_get"
+external setUnsafe: (array<'a>, int, 'a) => unit = "%array_unsafe_set"
+
 @val external from: 'a => array<'b> = "Array.from"
 @val external fromWithMap: ('a, 'b => 'c) => array<'c> = "Array.from"
 
@@ -95,11 +98,35 @@ let lastIndexOfOpt = (arr, item) =>
 @send external map: (array<'a>, 'a => 'b) => array<'b> = "map"
 @send external mapWithIndex: (array<'a>, ('a, int) => 'b) => array<'b> = "map"
 
-@send external reduce: (array<'a>, ('b, 'a) => 'b, 'b) => 'b = "reduce"
-@send external reduceWithIndex: (array<'a>, ('b, 'a, int) => 'b, 'b) => 'b = "reduce"
+let reduceU = (a, x, f) => {
+  let r = ref(x)
+  for i in 0 to length(a) - 1 {
+    r.contents = f(. r.contents, getUnsafe(a, i))
+  }
+  r.contents
+}
 
-@send external reduceRight: (array<'a>, ('b, 'a) => 'b, 'b) => 'b = "reduceRight"
-@send external reduceRightWithIndex: (array<'a>, ('b, 'a, int) => 'b, 'b) => 'b = "reduceRight"
+let reduce = (a, x, f) => reduceU(a, x, (. a, b) => f(a, b))
+
+let reduceWithIndexU = (a, x, f) => {
+  let r = ref(x)
+  for i in 0 to length(a) - 1 {
+    r.contents = f(. r.contents, getUnsafe(a, i), i)
+  }
+  r.contents
+}
+
+let reduceWithIndex = (a, x, f) => reduceWithIndexU(a, x, (. a, b, c) => f(a, b, c))
+
+let reduceReverseU = (a, x, f) => {
+  let r = ref(x)
+  for i in length(a) - 1 downto 0 {
+    r.contents = f(. r.contents, getUnsafe(a, i))
+  }
+  r.contents
+}
+
+let reduceReverse = (a, x, f) => reduceReverseU(a, x, (. a, b) => f(a, b))
 
 @send external some: (array<'a>, 'a => bool) => bool = "some"
 @send external someWithIndex: (array<'a>, ('a, int) => bool) => bool = "some"
@@ -110,9 +137,6 @@ let lastIndexOfOpt = (arr, item) =>
 @get_index external getSymbol: (array<'a>, Js__Symbol.t) => option<'b> = ""
 @get_index external getSymbolUnsafe: (array<'a>, Js__Symbol.t) => 'b = ""
 @set_index external setSymbol: (array<'a>, Js__Symbol.t, 'b) => unit = ""
-
-external getUnsafe: (array<'a>, int) => 'a = "%array_unsafe_get"
-external setUnsafe: (array<'a>, int, 'a) => unit = "%array_unsafe_set"
 
 let findIndexOpt = (array: array<'a>, finder: 'a => bool): option<int> =>
   switch findIndex(array, finder) {
