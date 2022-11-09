@@ -109,3 +109,11 @@ The `Promise` module is inlined from https://github.com/ryyppy/rescript-promise,
 ### window, document
 
 - `window` and `document` are typed as `Dom.window`/`Dom.document` rather than open objects (`{..}`).
+
+## OCaml compat
+
+During the transition phase to this standard library you might find yourself needing to access the current global `Array`/`List` etc modules, that originate from OCaml (and will be removed eventually). You can access them by adding this open at the top of any file:
+
+```rescript
+open OCamlCompat
+```
