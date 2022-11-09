@@ -814,7 +814,7 @@ let rec getByU = (xs, p) =>
 
 let getBy = (xs, p) => getByU(xs, (. a) => p(a))
 
-let rec keepU = (xs, p) =>
+let rec filterU = (xs, p) =>
   switch xs {
   | list{} => list{}
   | list{h, ...t} =>
@@ -823,16 +823,14 @@ let rec keepU = (xs, p) =>
       copyAuxWitFilter(p, t, cell)
       cell
     } else {
-      keepU(t, p)
+      filterU(t, p)
     }
   }
 
-let keep = (xs, p) => keepU(xs, (. x) => p(x))
+let filter = (xs, p) => filterU(xs, (. x) => p(x))
 
-let filter = keep
-
-let keepWithIndexU = (xs, p) => {
-  let rec auxKeepWithIndex = (xs, p, i) =>
+let filterWithIndexU = (xs, p) => {
+  let rec auxFilterWithIndex = (xs, p, i) =>
     switch xs {
     | list{} => list{}
     | list{h, ...t} =>
@@ -841,17 +839,15 @@ let keepWithIndexU = (xs, p) => {
         copyAuxWithFilterIndex(p, t, cell, i + 1)
         cell
       } else {
-        auxKeepWithIndex(t, p, i + 1)
+        auxFilterWithIndex(t, p, i + 1)
       }
     }
-  auxKeepWithIndex(xs, p, 0)
+  auxFilterWithIndex(xs, p, 0)
 }
 
-let keepWithIndex = (xs, p) => keepWithIndexU(xs, (. x, i) => p(x, i))
+let filterWithIndex = (xs, p) => filterWithIndexU(xs, (. x, i) => p(x, i))
 
-let filterWithIndex = keepWithIndex
-
-let rec keepMapU = (xs, p) =>
+let rec filterMapU = (xs, p) =>
   switch xs {
   | list{} => list{}
   | list{h, ...t} =>
@@ -860,11 +856,11 @@ let rec keepMapU = (xs, p) =>
       let cell = mutableCell(h, list{})
       copyAuxWitFilterMap(p, t, cell)
       cell
-    | None => keepMapU(t, p)
+    | None => filterMapU(t, p)
     }
   }
 
-let keepMap = (xs, p) => keepMapU(xs, (. x) => p(x))
+let filterMap = (xs, p) => filterMapU(xs, (. x) => p(x))
 
 let partitionU = (l, p) =>
   switch l {

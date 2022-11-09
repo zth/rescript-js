@@ -646,22 +646,8 @@ let getByU: (t<'a>, (. 'a) => bool) => option<'a>
 let getBy: (t<'a>, 'a => bool) => option<'a>
 
 /** Uncurried version of [keep](#keep). */
-let keepU: (t<'a>, (. 'a) => bool) => t<'a>
+let filterU: (t<'a>, (. 'a) => bool) => t<'a>
 
-/**
-  Returns a list of all elements in `someList` which satisfy the predicate function `pred`.
-
-  ```res example
-  let isEven = x => mod(x, 2) == 0
-
-  List.keep(list{1, 2, 3, 4}, isEven) /* list{2, 4} */
-
-  List.keep(list{None, Some(2), Some(3), None}, Option.isSome) /* list{Some(2), Some(3)} */
-  ```
-*/
-let keep: (t<'a>, 'a => bool) => t<'a>
-
-@deprecated("This function will soon be deprecated. Please, use `List.keep` instead.")
 /**
   Returns a list of all elements in `someList` which satisfy the predicate function `pred`.
 
@@ -675,24 +661,9 @@ let keep: (t<'a>, 'a => bool) => t<'a>
 */
 let filter: (t<'a>, 'a => bool) => t<'a>
 
-/** Uncurried version of [keepWithIndex](#keepWithIndex). */
-let keepWithIndexU: (t<'a>, (. 'a, int) => bool) => t<'a>
+/** Uncurried version of [filterWithIndex](#filterWithIndex). */
+let filterWithIndexU: (t<'a>, (. 'a, int) => bool) => t<'a>
 
-/**
-  Returns a list of all elements in `someList` which satisfy the predicate function `pred`.
-
-  ```res example
-  let isEven = x => mod(x, 2) == 0
-
-  List.keepWithIndex(list{1, 2, 3, 4}, (_x, index) => isEven(index)) /* list{1, 3} */
-  ```
-*/
-let keepWithIndex: (t<'a>, ('a, int) => bool) => t<'a>
-
-@deprecated(
-  "This function will soon be deprecated. Please, use `List.keepWithIndex` \
-     instead."
-)
 /**
   Returns a list of all elements in `someList` which satisfy the predicate function `pred`.
 
@@ -704,8 +675,8 @@ let keepWithIndex: (t<'a>, ('a, int) => bool) => t<'a>
 */
 let filterWithIndex: (t<'a>, ('a, int) => bool) => t<'a>
 
-/** Uncurried version of [keepMap](#keepMap). */
-let keepMapU: (t<'a>, (. 'a) => option<'b>) => t<'b>
+/** Uncurried version of [filterMap](#filterMap). */
+let filterMapU: (t<'a>, (. 'a) => option<'b>) => t<'b>
 
 /**
   Applies `f` to each element of `someList`. If `f(x)` returns `Some(value)`, then `value` is _kept_ in the resulting list.
@@ -715,7 +686,7 @@ let keepMapU: (t<'a>, (. 'a) => option<'b>) => t<'b>
   let isEven = x => mod(x, 2) == 0
 
   list{1, 2, 3, 4}
-  ->List.keepMap(x =>
+  ->List.filterMap(x =>
       if (isEven(x)) {
         Some(x)
       } else {
@@ -723,10 +694,10 @@ let keepMapU: (t<'a>, (. 'a) => option<'b>) => t<'b>
       }
     ) /* list{2, 4} */
 
-  list{Some(1), Some(2), None}->List.keepMap(x => x) /* list{1, 2} */
+  list{Some(1), Some(2), None}->List.filterMap(x => x) /* list{1, 2} */
   ```
 */
-let keepMap: (t<'a>, 'a => option<'b>) => t<'b>
+let filterMap: (t<'a>, 'a => option<'b>) => t<'b>
 
 /** Uncurried version of [partition](#partition). */
 let partitionU: (t<'a>, (. 'a) => bool) => (t<'a>, t<'a>)

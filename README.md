@@ -105,6 +105,7 @@ The `Promise` module is inlined from https://github.com/ryyppy/rescript-promise,
 ### Option, List, Result
 
 - The above stated modules are brought in from `Belt`, since they're widely used in the ecosystem.
+- In `List`, the same naming convention is applied as in `Array` for `keep*` functions. As in `keep` becomes `filter`, `keepMap` becomes `filterMap`, etc.
 
 ### window, document
 
