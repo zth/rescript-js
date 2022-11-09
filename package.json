@@ -1,6 +1,6 @@
 {
   "name": "@gabnor/rescript-stdlib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "clean": "rescript clean",
     "build": "rescript",
