@@ -22,13 +22,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. */
 
-let keepU = (opt, p) =>
+let filterU = (opt, p) =>
   switch opt {
   | Some(x) as some if p(. x) => some
   | _ => None
   }
 
-let keep = (opt, p) => keepU(opt, (. x) => p(x))
+let filter = (opt, p) => filterU(opt, (. x) => p(x))
 
 let forEachU = (opt, f) =>
   switch opt {

@@ -38,19 +38,19 @@
    let someString: option<string> = Some(\"hello\")
    ```
 */
-/** Uncurried version of `keep` */
-let keepU: (option<'a>, (. 'a) => bool) => option<'a>
+/** Uncurried version of `filter` */
+let filterU: (option<'a>, (. 'a) => bool) => option<'a>
 
 /**
    If `optionValue` is `Some(value)` and `p(value) = true`, it returns `Some(value)`; otherwise returns `None`
 
    ```res example
-   ReScriptJs.Js.Option.keep(Some(10), x => x > 5) /* returns `Some(10)` */
-   ReScriptJs.Js.Option.keep(Some(4), x => x > 5) /* returns `None` */
-   ReScriptJs.Js.Option.keep(None, x => x > 5) /* returns `None` */
+   Option.keep(Some(10), x => x > 5) /* returns `Some(10)` */
+   Option.keep(Some(4), x => x > 5) /* returns `None` */
+   Option.keep(None, x => x > 5) /* returns `None` */
    ```
 */
-let keep: (option<'a>, 'a => bool) => option<'a>
+let filter: (option<'a>, 'a => bool) => option<'a>
 
 /** Uncurried version of `forEach` */
 let forEachU: (option<'a>, (. 'a) => unit) => unit
@@ -59,8 +59,8 @@ let forEachU: (option<'a>, (. 'a) => unit) => unit
    If `optionValue` is `Some(value`), it calls `f(value)`; otherwise returns `()`
 
    ```res example
-   ReScriptJs.Js.Option.forEach(Some(\"thing\"), x => Js.log(x)) /* logs \"thing\" */
-   ReScriptJs.Js.Option.forEach(None, x => Js.log(x)) /* returns () */
+   Option.forEach(Some(\"thing\"), x => Js.log(x)) /* logs \"thing\" */
+   Option.forEach(None, x => Js.log(x)) /* returns () */
    ```
 */
 let forEach: (option<'a>, 'a => unit) => unit
@@ -69,9 +69,9 @@ let forEach: (option<'a>, 'a => unit) => unit
    Raises an Error in case `None` is provided. Use with care.
 
    ```res example
-   ReScriptJs.Js.Option.getExn(Some(3)) /* 3 */
+   Option.getExn(Some(3)) /* 3 */
 
-   ReScriptJs.Js.Option.getExn(None) /* Raises an Error */
+   Option.getExn(None) /* Raises an Error */
    ```
 */
 let getExn: option<'a> => 'a
@@ -95,10 +95,10 @@ let mapWithDefaultU: (option<'a>, 'b, (. 'a) => 'b) => 'b
 
    ```res example
    let someValue = Some(3)
-   someValue->ReScriptJs.Js.Option.mapWithDefault(0, x => x + 5) /* 8 */
+   someValue->Option.mapWithDefault(0, x => x + 5) /* 8 */
 
    let noneValue = None
-   noneValue->ReScriptJs.Js.Option.mapWithDefault(0, x => x + 5) /* 0 */
+   noneValue->Option.mapWithDefault(0, x => x + 5) /* 0 */
    ```
 */
 let mapWithDefault: (option<'a>, 'b, 'a => 'b) => 'b
@@ -110,9 +110,9 @@ let mapU: (option<'a>, (. 'a) => 'b) => option<'b>
    If `optionValue` is `Some(value)` this returns `f(value)`, otherwise it returns `None`.
 
    ```res example
-   ReScriptJs.Js.Option.map(Some(3), x => x * x) /* Some(9) */
+   Option.map(Some(3), x => x * x) /* Some(9) */
 
-   ReScriptJs.Js.Option.map(None, x => x * x) /* None */
+   Option.map(None, x => x * x) /* None */
    ```
 */
 let map: (option<'a>, 'a => 'b) => option<'b>
@@ -133,11 +133,11 @@ let flatMapU: (option<'a>, (. 'a) => option<'b>) => option<'b>
        None
      }
 
-   ReScriptJs.Js.Option.flatMap(Some(2), addIfAboveOne) /* Some(3) */
+   Option.flatMap(Some(2), addIfAboveOne) /* Some(3) */
 
-   ReScriptJs.Js.Option.flatMap(Some(-4), addIfAboveOne) /* None */
+   Option.flatMap(Some(-4), addIfAboveOne) /* None */
 
-   ReScriptJs.Js.Option.flatMap(None, addIfAboveOne) /* None */
+   Option.flatMap(None, addIfAboveOne) /* None */
    ```
 */
 let flatMap: (option<'a>, 'a => option<'b>) => option<'b>
@@ -146,14 +146,14 @@ let flatMap: (option<'a>, 'a => option<'b>) => option<'b>
    If `optionalValue` is `Some(value)`, returns `value`, otherwise default.
 
    ```res example
-   ReScriptJs.Js.Option.getWithDefault(None, \"Banana\") /* Banana */
+   Option.getWithDefault(None, \"Banana\") /* Banana */
 
-   ReScriptJs.Js.Option.getWithDefault(Some(\"Apple\"), \"Banana\") /* Apple */
+   Option.getWithDefault(Some(\"Apple\"), \"Banana\") /* Apple */
    ```
 
    ```res example
    let greet = (firstName: option<string>) =>
-     \"Greetings \" ++ firstName->ReScriptJs.Js.Option.getWithDefault(\"Anonymous\")
+     \"Greetings \" ++ firstName->Option.getWithDefault(\"Anonymous\")
 
    Some(\"Jane\")->greet /* \"Greetings Jane\" */
 
@@ -179,9 +179,9 @@ let orElse: (option<'a>, option<'a>) => option<'a>
    Returns `true` if the argument is `Some(value)`, `false` otherwise.
 
    ```res example
-   ReScriptJs.Js.Option.isSome(None) /* false */
+   Option.isSome(None) /* false */
 
-   ReScriptJs.Js.Option.isSome(Some(1)) /* true */
+   Option.isSome(Some(1)) /* true */
    ```
 */
 let isSome: option<'a> => bool
@@ -190,9 +190,9 @@ let isSome: option<'a> => bool
    Returns `true` if the argument is `None`, `false` otherwise.
 
    ```res example
-   ReScriptJs.Js.Option.isNone(None) /* true */
+   Option.isNone(None) /* true */
 
-   ReScriptJs.Js.Option.isNone(Some(1)) /* false */
+   Option.isNone(Some(1)) /* false */
    ```
 */
 let isNone: option<'a> => bool
@@ -214,7 +214,7 @@ let eqU: (option<'a>, option<'b>, (. 'a, 'b) => bool) => bool
    ```res example
    let clockEqual = (a, b) => mod(a, 12) == mod(b, 12)
 
-   open ReScriptJs.Js.Option
+   open Option
 
    eq(Some(3), Some(15), clockEqual) /* true */
 
@@ -250,7 +250,7 @@ let cmpU: (option<'a>, option<'b>, (. 'a, 'b) => int) => int
    ```res example
    let clockCompare = (a, b) => compare(mod(a, 12), mod(b, 12))
 
-   open ReScriptJs.Js.Option
+   open Option
 
    cmp(Some(3), Some(15), clockCompare) /* 0 */
 
