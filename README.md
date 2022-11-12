@@ -1,4 +1,4 @@
-# rescript-stdlib
+# rescript-standard-library
 
 **This is not officially published yet, and is in private testing.**
 
@@ -37,7 +37,7 @@ Open the stdlib, so it's available in the global scope:
 ```diff
  {
    "bsc-flags": [
-+    "-open ReScriptStdLib",
++    "-open RescriptStdlib",
    ]
  }
 ```
@@ -67,7 +67,7 @@ let validFloats = maybeValidFloats
 
 ## Editor tooling
 
-Whenever you have the stdlib auto-opened (`-open ReScriptStdLib`), the ReScript editor tooling will prefer modules from the stdlib for pipe autocompletion whenever it makes sense.
+Whenever you have the stdlib auto-opened (`-open RescriptStdLib`), the ReScript editor tooling will prefer modules from the stdlib for pipe autocompletion whenever it makes sense.
 
 ## Differences to `rescript-js`
 

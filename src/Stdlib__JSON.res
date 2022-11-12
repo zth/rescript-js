@@ -29,7 +29,7 @@ module Decode = {
     | Null
     | String(string)
     | Number(float)
-    | Object(Js__Dict.t<t>)
+    | Object(Stdlib__Dict.t<t>)
     | Array(array<t>)
 
   @val external _internalClass: 'a => string = "Object.prototype.toString.call"
@@ -37,7 +37,7 @@ module Decode = {
   external _asString: 'a => string = "%identity"
   external _asFloat: 'a => float = "%identity"
   external _asArray: 'a => array<Js.Json.t> = "%identity"
-  external _asDict: 'a => Js__Dict.t<Js.Json.t> = "%identity"
+  external _asDict: 'a => Stdlib__Dict.t<Js.Json.t> = "%identity"
 
   let classify = value => {
     switch _internalClass(value) {
@@ -57,6 +57,6 @@ module Encode = {
   external string: string => t = "%identity"
   external int: int => t = "%identity"
   external float: float => t = "%identity"
-  external object: Js__Dict.t<t> => t = "%identity"
+  external object: Stdlib__Dict.t<t> => t = "%identity"
   external array: array<t> => t = "%identity"
 }

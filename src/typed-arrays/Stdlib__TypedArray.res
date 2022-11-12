@@ -3,7 +3,7 @@ type t<'a>
 @get_index external get: (t<'a>, int) => option<'a> = ""
 @set_index external set: (t<'a>, int, 'a) => unit = ""
 
-@get external buffer: t<'a> => Js__ArrayBuffer.t = "buffer"
+@get external buffer: t<'a> => Stdlib__ArrayBuffer.t = "buffer"
 @get external byteLength: t<'a> => int = "byteLength"
 @get external byteOffset: t<'a> => int = "byteOffset"
 

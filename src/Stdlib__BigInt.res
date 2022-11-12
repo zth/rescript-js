@@ -13,7 +13,7 @@ type t = Js.Types.bigint_val
 
 @val external toFloat: t => float = "Number"
 
-let toInt = t => t->toFloat->Js__Int.fromFloat
+let toInt = t => t->toFloat->Stdlib__Int.fromFloat
 
 external \"+": (t, t) => t = "%addfloat"
 external \"-": (t, t) => t = "%subfloat"

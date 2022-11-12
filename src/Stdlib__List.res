@@ -461,7 +461,7 @@ let rec fillAux = (arr, i, x) =>
   switch x {
   | list{} => ()
   | list{h, ...t} =>
-    Js__Array.setUnsafe(arr, i, h)
+    Stdlib__Array.setUnsafe(arr, i, h)
     fillAux(arr, i + 1, t)
   }
 
@@ -469,10 +469,10 @@ let rec fromArrayAux = (a, i, res) =>
   if i < 0 {
     res
   } else {
-    fromArrayAux(a, i - 1, list{Js__Array.getUnsafe(a, i), ...res})
+    fromArrayAux(a, i - 1, list{Stdlib__Array.getUnsafe(a, i), ...res})
   }
 
-let fromArray = a => fromArrayAux(a, Js__Array.length(a) - 1, list{})
+let fromArray = a => fromArrayAux(a, Stdlib__Array.length(a) - 1, list{})
 
 let toArray = (x: t<_>) => {
   let len = length(x)
@@ -483,7 +483,7 @@ let toArray = (x: t<_>) => {
 
 let shuffle = xs => {
   let v = toArray(xs)
-  Js__Array.shuffleInPlace(v)
+  Stdlib__Array.shuffleInPlace(v)
   fromArray(v)
 }
 
@@ -536,10 +536,10 @@ let concatMany = xs =>
   | [] => list{}
   | [x] => x
   | _ =>
-    let len = Js__Array.length(xs)
-    let v = ref(Js__Array.getUnsafe(xs, len - 1))
+    let len = Stdlib__Array.length(xs)
+    let v = ref(Stdlib__Array.getUnsafe(xs, len - 1))
     for i in len - 2 downto 0 {
-      v.contents = concat(Js__Array.getUnsafe(xs, i), v.contents)
+      v.contents = concat(Stdlib__Array.getUnsafe(xs, i), v.contents)
     }
     v.contents
   }

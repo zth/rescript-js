@@ -22,7 +22,7 @@ external formatToParts: (t, float) => array<{"type": string, "value": string}> =
 @send
 external formatIntToParts: (t, int) => array<{"type": string, "value": string}> = "formatToParts"
 
-@send external formatBigInt: (t, Js__BigInt.t) => string = "format"
+@send external formatBigInt: (t, Stdlib__BigInt.t) => string = "format"
 @send
-external formatBigIntToParts: (t, Js__BigInt.t) => array<{"type": string, "value": string}> =
+external formatBigIntToParts: (t, Stdlib__BigInt.t) => array<{"type": string, "value": string}> =
   "formatToParts"

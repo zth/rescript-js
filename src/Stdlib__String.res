@@ -39,7 +39,7 @@ let lastIndexOfOpt = (s, search) =>
 @send external lastIndexOfFrom: (string, string, ~from: int) => int = "lastIndexOf"
 
 @return(nullable) @send
-external match: (string, Js__RegExp.t) => option<Js__RegExp.Result.t> = "match"
+external match: (string, Stdlib__RegExp.t) => option<Stdlib__RegExp.Result.t> = "match"
 
 type normalizeForm = [#NFC | #NFD | #NFKC | #NFKD]
 @send external normalize: string => string = "normalize"
@@ -48,26 +48,26 @@ type normalizeForm = [#NFC | #NFD | #NFKC | #NFKD]
 @send external repeat: (string, int) => string = "repeat"
 
 @send external replaceString: (string, string, string) => string = "replace"
-@send external replaceRegExp: (string, Js__RegExp.t, string) => string = "replace"
+@send external replaceRegExp: (string, Stdlib__RegExp.t, string) => string = "replace"
 
 @send
 external unsafeReplaceRegExpBy0: (
   string,
-  Js__RegExp.t,
+  Stdlib__RegExp.t,
   (@uncurry ~match: string, ~offset: int, ~input: string) => string,
 ) => string = "replace"
 
 @send
 external unsafeReplaceRegExpBy1: (
   string,
-  Js__RegExp.t,
+  Stdlib__RegExp.t,
   (@uncurry ~match: string, ~group1: string, ~offset: int, ~input: string) => string,
 ) => string = "replace"
 
 @send
 external unsafeReplaceRegExpBy2: (
   string,
-  Js__RegExp.t,
+  Stdlib__RegExp.t,
   (
     @uncurry ~match: string,
     ~group1: string,
@@ -80,7 +80,7 @@ external unsafeReplaceRegExpBy2: (
 @send
 external unsafeReplaceRegExpBy3: (
   string,
-  Js__RegExp.t,
+  Stdlib__RegExp.t,
   (
     @uncurry ~match: string,
     ~group1: string,
@@ -91,7 +91,7 @@ external unsafeReplaceRegExpBy3: (
   ) => string,
 ) => string = "replace"
 
-@send external search: (string, Js__RegExp.t) => int = "search"
+@send external search: (string, Stdlib__RegExp.t) => int = "search"
 let searchOpt = (s, re) =>
   switch search(s, re) {
   | -1 => None
@@ -103,9 +103,10 @@ let searchOpt = (s, re) =>
 
 @send external split: (string, string) => array<string> = "split"
 @send external splitAtMost: (string, string, ~limit: int) => array<string> = "split"
-@send external splitByRegExp: (string, Js__RegExp.t) => array<option<string>> = "split"
+@send external splitByRegExp: (string, Stdlib__RegExp.t) => array<option<string>> = "split"
 @send
-external splitByRegExpAtMost: (string, Js__RegExp.t, ~limit: int) => array<option<string>> = "split"
+external splitByRegExpAtMost: (string, Stdlib__RegExp.t, ~limit: int) => array<option<string>> =
+  "split"
 
 @send external startsWith: (string, string) => bool = "startsWith"
 @send external startsWithFrom: (string, string, ~from: int) => bool = "startsWith"
@@ -128,8 +129,8 @@ external splitByRegExpAtMost: (string, Js__RegExp.t, ~limit: int) => array<optio
 @send external padStart: (string, int, string) => string = "padStart"
 @send external padEnd: (string, int, string) => string = "padEnd"
 
-@get_index external getSymbol: (string, Js__Symbol.t) => option<'a> = ""
-@get_index external getSymbolUnsafe: (string, Js__Symbol.t) => 'a = ""
-@set_index external setSymbol: (string, Js__Symbol.t, 'a) => unit = ""
+@get_index external getSymbol: (string, Stdlib__Symbol.t) => option<'a> = ""
+@get_index external getSymbolUnsafe: (string, Stdlib__Symbol.t) => 'a = ""
+@set_index external setSymbol: (string, Stdlib__Symbol.t, 'a) => unit = ""
 
 @send external localeCompare: (string, string) => float = "localeCompare"

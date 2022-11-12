@@ -1,11 +1,12 @@
 type t
 
-@new external fromBuffer: Js__ArrayBuffer.t => t = "DataView"
-@new external fromBufferToEnd: (Js__ArrayBuffer.t, ~byteOffset: int) => t = "DataView"
+@new external fromBuffer: Stdlib__ArrayBuffer.t => t = "DataView"
+@new external fromBufferToEnd: (Stdlib__ArrayBuffer.t, ~byteOffset: int) => t = "DataView"
 @new
-external fromBufferWithRange: (Js__ArrayBuffer.t, ~byteOffset: int, ~length: int) => t = "DataView"
+external fromBufferWithRange: (Stdlib__ArrayBuffer.t, ~byteOffset: int, ~length: int) => t =
+  "DataView"
 
-@get external buffer: t => Js__ArrayBuffer.t = "buffer"
+@get external buffer: t => Stdlib__ArrayBuffer.t = "buffer"
 @get external byteLength: t => int = "byteLength"
 @get external byteOffset: t => int = "byteOffset"
 
@@ -19,8 +20,8 @@ external fromBufferWithRange: (Js__ArrayBuffer.t, ~byteOffset: int, ~length: int
 @send external getFloat32: t => float = "getFloat32"
 @send external getFloat64: t => float = "getFloat64"
 
-@send external getBigInt64: t => Js__BigInt.t = "getBigInt64"
-@send external getBigUint64: t => Js__BigInt.t = "getBigUint64"
+@send external getBigInt64: t => Stdlib__BigInt.t = "getBigInt64"
+@send external getBigUint64: t => Stdlib__BigInt.t = "getBigUint64"
 
 @send external setInt8: (t, int) => unit = "setInt8"
 @send external setUint8: (t, int) => unit = "setUint8"
@@ -32,5 +33,5 @@ external fromBufferWithRange: (Js__ArrayBuffer.t, ~byteOffset: int, ~length: int
 @send external setFloat32: (t, float) => unit = "setFloat32"
 @send external setFloat64: (t, float) => unit = "setFloat64"
 
-@send external setBigInt64: (t, Js__BigInt.t) => unit = "setBigInt64"
-@send external setBigUint64: (t, Js__BigInt.t) => unit = "setBigUint64"
+@send external setBigInt64: (t, Stdlib__BigInt.t) => unit = "setBigInt64"
+@send external setBigUint64: (t, Stdlib__BigInt.t) => unit = "setBigUint64"

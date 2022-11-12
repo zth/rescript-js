@@ -18,4 +18,4 @@ type rule = [#zero | #one | #two | #few | #many | #other]
 
 @send external select: (t, float) => rule = "format"
 @send external selectInt: (t, int) => rule = "format"
-@send external selectBigInt: (t, Js__BigInt.t) => rule = "format"
+@send external selectBigInt: (t, Stdlib__BigInt.t) => rule = "format"

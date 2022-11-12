@@ -1,6 +1,6 @@
 type t<'a> = Js.Undefined.t<'a>
 
-external asNullable: t<'a> => Js__Nullable.t<'a> = "%identity"
+external asNullable: t<'a> => Stdlib__Nullable.t<'a> = "%identity"
 
 external empty: t<'a> = "#undefined"
 

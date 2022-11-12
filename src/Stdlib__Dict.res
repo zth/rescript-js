@@ -11,7 +11,7 @@ let delete = (dict, string) => {
 @obj external empty: unit => t<'a> = ""
 
 @val external fromArray: array<(string, 'a)> => t<'a> = "Object.fromEntries"
-@val external fromIterator: Js__Iterator.t<(string, 'a)> => t<'a> = "Object.fromEntries"
+@val external fromIterator: Stdlib__Iterator.t<(string, 'a)> => t<'a> = "Object.fromEntries"
 
 @val external toArray: t<'a> => array<(string, 'a)> = "Object.entries"
 

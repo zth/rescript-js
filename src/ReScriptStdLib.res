@@ -1,69 +1,69 @@
-module Array = Js__Array
-module Console = Js__Console
-module DataView = Js__DataView
-module Date = Js__Date
-module Dict = Js__Dict
-module Error = Js__Error
-module Float = Js__Float
-module Global = Js__Global
-module Int = Js__Int
-module BigInt = Js__BigInt
-module Math = Js__Math
-module Null = Js__Null
-module Nullable = Js__Nullable
-module Object = Js__Object
-module Promise = Js__Promise
-module RegExp = Js__RegExp
-module String = Js__String
-module Undefined = Js__Undefined
-module Symbol = Js__Symbol
-module Type = Js__Type
-module JSON = Js__JSON
+module Array = Stdlib__Array
+module Console = Stdlib__Console
+module DataView = Stdlib__DataView
+module Date = Stdlib__Date
+module Dict = Stdlib__Dict
+module Error = Stdlib__Error
+module Float = Stdlib__Float
+module Global = Stdlib__Global
+module Int = Stdlib__Int
+module BigInt = Stdlib__BigInt
+module Math = Stdlib__Math
+module Null = Stdlib__Null
+module Nullable = Stdlib__Nullable
+module Object = Stdlib__Object
+module Promise = Stdlib__Promise
+module RegExp = Stdlib__RegExp
+module String = Stdlib__String
+module Undefined = Stdlib__Undefined
+module Symbol = Stdlib__Symbol
+module Type = Stdlib__Type
+module JSON = Stdlib__JSON
 
-module Iterator = Js__Iterator
-module AsyncIterator = Js__AsyncIterator
-module Map = Js__Map
-module WeakMap = Js__WeakMap
-module Set = Js__Set
-module WeakSet = Js__WeakSet
+module Iterator = Stdlib__Iterator
+module AsyncIterator = Stdlib__AsyncIterator
+module Map = Stdlib__Map
+module WeakMap = Stdlib__WeakMap
+module Set = Stdlib__Set
+module WeakSet = Stdlib__WeakSet
 
-module ArrayBuffer = Js__ArrayBuffer
-module TypedArray = Js__TypedArray
-module Float32Array = Js__Float32Array
-module Float64Array = Js__Float64Array
-module Int8Array = Js__Int8Array
-module Int16Array = Js__Int16Array
-module Int32Array = Js__Int32Array
-module Uint8Array = Js__Uint8Array
-module Uint16Array = Js__Uint16Array
-module Uint32Array = Js__Uint32Array
-module Uint8ClampedArray = Js__Uint8ClampedArray
-module BigInt64Array = Js__BigInt64Array
-module BigUint64Array = Js__BigUint64Array
+module ArrayBuffer = Stdlib__ArrayBuffer
+module TypedArray = Stdlib__TypedArray
+module Float32Array = Stdlib__Float32Array
+module Float64Array = Stdlib__Float64Array
+module Int8Array = Stdlib__Int8Array
+module Int16Array = Stdlib__Int16Array
+module Int32Array = Stdlib__Int32Array
+module Uint8Array = Stdlib__Uint8Array
+module Uint16Array = Stdlib__Uint16Array
+module Uint32Array = Stdlib__Uint32Array
+module Uint8ClampedArray = Stdlib__Uint8ClampedArray
+module BigInt64Array = Stdlib__BigInt64Array
+module BigUint64Array = Stdlib__BigUint64Array
 
-module Intl = Js__Intl
+module Intl = Stdlib__Intl
 
-module Serializer = Js__Serializer
+module Serializer = Stdlib__Serializer
 
 @val external window: Dom.window = "window"
 @val external document: Dom.document = "document"
 @val external globalThis: {..} = "globalThis"
 
-external null: Js__Null.t<'a> = "#null"
-external undefined: Js__Undefined.t<'a> = "#undefined"
-external typeof: 'a => Js__Type.t = "#typeof"
+external null: Stdlib__Null.t<'a> = "#null"
+external undefined: Stdlib__Undefined.t<'a> = "#undefined"
+external typeof: 'a => Stdlib__Type.t = "#typeof"
 
-include Js__Global
+include Stdlib__Global
 
 type t<'a> = Js.t<'a>
 module Fn = Js.Fn
 module MapperRt = Js.MapperRt
 module Internal = Js.Internal
-module Re = Js__RegExp // needed for the %re sugar
+module Re = Stdlib__RegExp // needed for the %re sugar
 module Exn = Js.Exn
-module Option = Js__Option
-module List = Js__List
-module Result = Js__Result
+module Option = Stdlib__Option
+module List = Stdlib__List
+module Result = Stdlib__Result
 
 type null<+'a> = Js.null<'a>
 

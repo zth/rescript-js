@@ -3,8 +3,8 @@
 @val external fromArrayLike: Js.Array2.array_like<'a> => array<'a> = "Array.from"
 @val
 external fromArrayLikeWithMap: (Js.Array2.array_like<'a>, 'a => 'b) => array<'a> = "Array.from"
-@val external fromIterator: Js__Iterator.t<'a> => array<'a> = "Array.from"
-@val external fromIteratorWithMap: (Js__Iterator.t<'a>, 'a => 'c) => array<'a> = "Array.from"
+@val external fromIterator: Stdlib__Iterator.t<'a> => array<'a> = "Array.from"
+@val external fromIteratorWithMap: (Stdlib__Iterator.t<'a>, 'a => 'c) => array<'a> = "Array.from"
 @val external isArray: 'a => bool = "Array.isArray"
 @get external length: array<'a> => int = "length"
 @send external copyAllWithin: (array<'a>, ~target: int) => array<'a> = "copyWithin"
@@ -94,9 +94,9 @@ let reduceWithIndex: (array<'a>, 'b, ('b, 'a, int) => 'b) => 'b
 @send external someWithIndex: (array<'a>, ('a, int) => bool) => bool = "some"
 @get_index external get: (array<'a>, int) => option<'a> = ""
 @set_index external set: (array<'a>, int, 'a) => unit = ""
-@get_index external getSymbol: (array<'a>, Js__Symbol.t) => option<'b> = ""
-@get_index external getSymbolUnsafe: (array<'a>, Js__Symbol.t) => 'b = ""
-@set_index external setSymbol: (array<'a>, Js__Symbol.t, 'b) => unit = ""
+@get_index external getSymbol: (array<'a>, Stdlib__Symbol.t) => option<'b> = ""
+@get_index external getSymbolUnsafe: (array<'a>, Stdlib__Symbol.t) => 'b = ""
+@set_index external setSymbol: (array<'a>, Stdlib__Symbol.t, 'b) => unit = ""
 external getUnsafe: (array<'a>, int) => 'a = "%array_unsafe_get"
 external setUnsafe: (array<'a>, int, 'a) => unit = "%array_unsafe_set"
 let findIndexOpt: (array<'a>, 'a => bool) => option<int>

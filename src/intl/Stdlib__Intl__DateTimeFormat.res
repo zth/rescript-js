@@ -14,19 +14,20 @@ external supportedLocalesOfWithOptions: (array<string>, {..}) => t =
 
 @send external resolvedOptions: t => {..} = "resolvedOptions"
 
-@send external format: (t, Js__Date.t) => string = "format"
+@send external format: (t, Stdlib__Date.t) => string = "format"
 @send
-external formatToParts: (t, Js__Date.t) => array<{"type": string, "value": string}> =
+external formatToParts: (t, Stdlib__Date.t) => array<{"type": string, "value": string}> =
   "formatToParts"
 
 @send
-external formatRange: (t, ~startDate: Js__Date.t, ~endDate: Js__Date.t) => string = "formatRange"
+external formatRange: (t, ~startDate: Stdlib__Date.t, ~endDate: Stdlib__Date.t) => string =
+  "formatRange"
 
 @send
 external formatRangeToParts: (
   t,
-  ~startDate: Js__Date.t,
-  ~endDate: Js__Date.t,
+  ~startDate: Stdlib__Date.t,
+  ~endDate: Stdlib__Date.t,
 ) => array<{
   "type": string,
   "value": string,

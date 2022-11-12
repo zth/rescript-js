@@ -2,7 +2,7 @@ type t<'a>
 
 @new external make: unit => t<'a> = "Set"
 @new external fromArray: array<'a> => t<'a> = "Set"
-@new external fromIterator: Js__Iterator.t<'a> => t<'a> = "Set"
+@new external fromIterator: Stdlib__Iterator.t<'a> => t<'a> = "Set"
 
 @get external size: t<'a> => int = "size"
 
@@ -14,4 +14,4 @@ type t<'a>
 
 @send external forEach: (t<'a>, 'a => unit) => unit = "forEach"
 
-@send external values: t<'a> => Js__Iterator.t<'a> = "values"
+@send external values: t<'a> => Stdlib__Iterator.t<'a> = "values"

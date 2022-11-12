@@ -12,11 +12,11 @@
 @val external copy: (@as(json`{}`) _, {..}) => {..} = "Object.assign"
 
 @get_index external get: ({..}, string) => option<'a> = ""
-@get_index external getSymbol: ({..}, Js__Symbol.t) => option<'a> = ""
-@get_index external getSymbolUnsafe: ({..}, Js__Symbol.t) => 'a = ""
+@get_index external getSymbol: ({..}, Stdlib__Symbol.t) => option<'a> = ""
+@get_index external getSymbolUnsafe: ({..}, Stdlib__Symbol.t) => 'a = ""
 
 @set_index external set: ({..}, string, 'a) => unit = ""
-@set_index external setSymbol: ({..}, Js__Symbol.t, 'a) => unit = ""
+@set_index external setSymbol: ({..}, Stdlib__Symbol.t, 'a) => unit = ""
 
 @val external keysToArray: {..} => array<string> = "Object.keys"
 

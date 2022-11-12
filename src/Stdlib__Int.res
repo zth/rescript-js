@@ -21,10 +21,10 @@ external fromFloat: float => int = "%intoffloat"
 
 let fromString = (~radix=?, x) => {
   let maybeInt = switch radix {
-  | Some(radix) => Js__Float.parseIntWithRadix(x, ~radix)
-  | None => Js__Float.parseInt(x)
+  | Some(radix) => Stdlib__Float.parseIntWithRadix(x, ~radix)
+  | None => Stdlib__Float.parseInt(x)
   }
-  if Js__Float.isNaN(maybeInt) {
+  if Stdlib__Float.isNaN(maybeInt) {
     None
   } else if maybeInt > Constants.maxValue->toFloat || maybeInt < Constants.minValue->toFloat {
     None
