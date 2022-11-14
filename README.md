@@ -2,11 +2,11 @@
 
 **This is not officially published yet, and is in private testing.**
 
-The new standard library for ReScript. Based on `rescript-js`, with a few additions taken from `Belt`, and a few tweaks.
+The new ReScript standard library. Intended to be familiar for JavaScript developers, easy to use, and be rich enough that you don't need to reach for anything else for typical ReScript development.
 
-This standard library is intended to be familiar for JS developers, easy to use, be rich enough that you don't need to reach for anything else for typical ReScript development.
+It ships as a separate package initially, so you can start migrating to it at your convenience. Eventually it'll make its way into the compiler (likely in ReScript `v11`). And, long term it will replace the current `Js` namespace.
 
-It will start its life as a separate package, but will eventually make its way into the compiler.
+Ultimately, this + `Belt` is what'll be available for ReScript developers out of the box. Read more about the plan in [this forum post]().
 
 ## Acknowledgements
 
@@ -15,6 +15,8 @@ It will start its life as a separate package, but will eventually make its way i
 - Patrick (@ryyppy) for his work on `rescript-promise`, which is fully inlined into the stdlib.
 
 ## Installation
+
+ReScript `>=10.1` is required.
 
 ```console
 $ yarn add @gabnor/rescript-stdlib
@@ -32,7 +34,7 @@ Then add `rescript-stdlib` to your `bsconfig.json`'s `bs-dependencies`:
  }
 ```
 
-Open the stdlib, so it's available in the global scope:
+Open the standard library so it's available in the global scope. This is important because this is the way it'll ship in the compiler eventually, automatically available in the global scope.
 
 ```diff
  {
@@ -65,18 +67,26 @@ let validFloats = maybeValidFloats
   ->Array.filterMap(v => v->Float.fromString)
 ```
 
-## Editor tooling
+## Documentation
 
-Whenever you have the stdlib auto-opened (`-open RescriptStdLib`), the ReScript editor tooling will prefer modules from the stdlib for pipe autocompletion whenever it makes sense.
+Documentation will be added successively to this repository, and will be fully available as the standard library is officially merged into the compiler.
+
+## OCaml compat
+
+During the transition phase to this standard library you might find yourself needing to access the current global `Array`/`List` etc modules that originate from OCaml. These will be removed eventually, but in the transition phase you'll be able to access them by adding this open at the top of any file:
+
+```rescript
+open OCamlCompat
+```
 
 ## Differences to `rescript-js`
 
-This stdlib is based on `rescript-js`, but with a few tweaks and modifications. Those tweaks and modifications are listed below.
+This standard library is based on `rescript-js`, but with a few tweaks and modifications:
 
 ### Array
 
 - `reduce`/`reduceReverse` and friends (uncurried versions, withIndex versions) are taken from `Belt` and replace the bindings to the JavaScript equivalents (`reduce` and `reduceRight`). The `reduce` versions from `Belt` works fully with type inference because of the argument order being reversed (`init` value comes first), whereas the JavaScript versions don't work well with inference. The runtime added for this is minor (and very fast still), and we want users to have to annotate as little as possible for the standard functions they'll be using.
-- `push`/`pushMany`/`unshift`/`unshiftMany` are changed to return `unit`, for convenience. In JS, these return the new length of the array. That's however extremely rare to actually use, and you can just do `Array.length(array)` after pushing to get the new length. Changing the return type to be `unit` gets rid of needing to do `let _ = `, which can be confusing for beginners.
+- `push`/`pushMany`/`unshift`/`unshiftMany` are changed to return `unit`, for convenience. In JS, these return the new length of the array. That's however extremely rare to actually use, and you can just do `Array.length(array)` after pushing to get the new length. Changing the return type to be `unit` gets rid of needing to do `let _ = ` (or `->ignore`), which can be confusing for beginners.
 - `findIndexOpt`/`lastIndexOf`/`indexOfOpt` are added, returning `None` instead of `-1` if the item searched for does not exist. These are in addition to `findIndex`/`lastIndexOf`, which still returns `-1` when the item you're looking for does not exist.
 - `getUnsafe` added (copied from `Belt`).
 - `setUnsafe` added (copied from `Belt`).
@@ -111,10 +121,12 @@ The `Promise` module is inlined from https://github.com/ryyppy/rescript-promise,
 
 - `window` and `document` are typed as `Dom.window`/`Dom.document` rather than open objects (`{..}`).
 
-## OCaml compat
+## Migration
 
-During the transition phase to this standard library you might find yourself needing to access the current global `Array`/`List` etc modules, that originate from OCaml (and will be removed eventually). You can access them by adding this open at the top of any file:
+_Things are added to this section on migration gradually._
 
-```rescript
-open OCamlCompat
-```
+Migrating to the new standard library should be easy to do gradually. In this section we'll gather information that's intended to help migrating as painlessly as possible.
+
+### Name clashes
+
+Since the standard library is designed to live in the global scope, you _might_ have your own modules whose names might collide with the modules from the standard library. The easiest way to solve this is to just rename your own module to something else.
