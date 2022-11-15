@@ -14,7 +14,7 @@ First thing's first - a huge thanks to @bloodyowl and the rest of the contributo
 
 ## What does it look like?
 
-We've primarily based our work on [`rescript-js`](https://github.com/bloodyowl/rescript-js), which focuses on having an even tighter binding to the JavaScript standard library than what `Js.Array2` and friends does.
+We've primarily based our work on [`rescript-js`](https://github.com/bloodyowl/rescript-js), which focuses on having an even tighter binding to the JavaScript standard library than what `Js.Array2` and friends do.
 
 The new standard library also tries to stay as close to JavaScript as possible. But, we've made some tweaks and sprinkled in a few additional things to make it slightly richer than the standard library of JavaScript, as well as make it better adapted to ReScript where necessary.
 
