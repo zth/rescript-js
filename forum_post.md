@@ -10,7 +10,7 @@ Check out the [repository for the package here](https://github.com/rescript-lang
 
 ## Acknowledgements
 
-First thing's first - a huge thanks to @bloodyelbow and the rest of the contributors to `rescript-js`. This standard library is heavily based on `rescript-js`. Thank you for your great work!
+First thing's first - a huge thanks to @bloodyowl and the rest of the contributors to `rescript-js`. This standard library is heavily based on `rescript-js`. Thank you for your great work!
 
 ## What does it look like?
 
