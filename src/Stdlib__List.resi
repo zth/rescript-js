@@ -141,9 +141,6 @@ let getExn: (t<'a>, int) => 'a
 */
 let make: (int, 'a) => t<'a>
 
-/** Uncurried version of [makeBy](#makeBy) */
-let makeByU: (int, (. int) => 'a) => t<'a>
-
 /**
 Return a list of length `numItems` with element `i` initialized with `f(i)`.
 Returns an empty list if `numItems` is negative.
@@ -239,9 +236,6 @@ let reverseConcat: (t<'a>, t<'a>) => t<'a>
 */
 let flatten: t<t<'a>> => t<'a>
 
-/** Uncurried version of [map](#map). */
-let mapU: (t<'a>, (. 'a) => 'b) => t<'b>
-
 /**
   Returns a new list with `f` applied to each element of `someList`.
 
@@ -260,9 +254,6 @@ let map: (t<'a>, 'a => 'b) => t<'b>
 */
 let zip: (t<'a>, t<'b>) => t<('a, 'b)>
 
-/** Uncurried version of [zipBy](#zipBy). */
-let zipByU: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => t<'c>
-
 /**
   **See:** [zip](#zip)
 
@@ -271,9 +262,6 @@ let zipByU: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => t<'c>
   ```
 */
 let zipBy: (t<'a>, t<'b>, ('a, 'b) => 'c) => t<'c>
-
-/** Uncurried version of [mapWithIndex](#mapWithIndex). */
-let mapWithIndexU: (t<'a>, (. int, 'a) => 'b) => t<'b>
 
 /**
   Applies `f` to each element of `someList`.
@@ -317,9 +305,6 @@ let toArray: t<'a> => array<'a>
 */
 let reverse: t<'a> => t<'a>
 
-/** Uncurried version of [mapReverse](#mapReverse). */
-let mapReverseU: (t<'a>, (. 'a) => 'b) => t<'b>
-
 /**
   Equivalent to:
 
@@ -332,9 +317,6 @@ let mapReverseU: (t<'a>, (. 'a) => 'b) => t<'b>
   ```
 */
 let mapReverse: (t<'a>, 'a => 'b) => t<'b>
-
-/** Uncurried version of [forEach](#forEach). */
-let forEachU: (t<'a>, (. 'a) => 'b) => unit
 
 /**
   Call `f` on each element of `someList` from the beginning to end.
@@ -351,9 +333,6 @@ let forEachU: (t<'a>, (. 'a) => 'b) => unit
   ```
 */
 let forEach: (t<'a>, 'a => 'b) => unit
-
-/** Uncurried version of [forEachWithIndex](#forEachWithIndex). */
-let forEachWithIndexU: (t<'a>, (. int, 'a) => 'b) => unit
 
 /**
   Call `f` on each element of `someList` from beginning to end.
@@ -373,9 +352,6 @@ let forEachWithIndexU: (t<'a>, (. int, 'a) => 'b) => unit
 */
 let forEachWithIndex: (t<'a>, (int, 'a) => 'b) => unit
 
-/** Uncurried version of [reduce](#reduce). */
-let reduceU: (t<'a>, 'b, (. 'b, 'a) => 'b) => 'b
-
 /**
   Applies `f` to each element of `someList` from beginning to end. Function `f` has two parameters: the item from the list and an “accumulator”, which starts with a value of `initialValue`. reduce returns the final value of the accumulator.
 
@@ -389,9 +365,6 @@ let reduceU: (t<'a>, 'b, (. 'b, 'a) => 'b) => 'b
 */
 let reduce: (t<'a>, 'b, ('b, 'a) => 'b) => 'b
 
-/** Uncurried version of [reduceWithIndex](#reduceWithIndex). */
-let reduceWithIndexU: (t<'a>, 'b, (. 'b, 'a, int) => 'b) => 'b
-
 /**
   Applies `f` to each element of `someList` from beginning to end. Function `f` has three parameters: the item from the list and an “accumulator”, which starts with a value of `initialValue` and the index of each element. `reduceWithIndex` returns the final value of the accumulator.
 
@@ -400,9 +373,6 @@ let reduceWithIndexU: (t<'a>, 'b, (. 'b, 'a, int) => 'b) => 'b
   ```
 */
 let reduceWithIndex: (t<'a>, 'b, ('b, 'a, int) => 'b) => 'b
-
-/** Uncurried version of [reduceReverse](#reduceReverse). */
-let reduceReverseU: (t<'a>, 'b, (. 'b, 'a) => 'b) => 'b
 
 /**
   Works like [reduce](#reduce), except that function `f` is applied to each
@@ -418,9 +388,6 @@ let reduceReverseU: (t<'a>, 'b, (. 'b, 'a) => 'b) => 'b
 */
 let reduceReverse: (t<'a>, 'b, ('b, 'a) => 'b) => 'b
 
-/** Uncurried version of [mapReverse2](#mapReverse2). */
-let mapReverse2U: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => t<'c>
-
 /**
   Equivalent to: `zipBy(xs, ys, f)->reverse`
 
@@ -430,9 +397,6 @@ let mapReverse2U: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => t<'c>
   ```
 */
 let mapReverse2: (t<'a>, t<'b>, ('a, 'b) => 'c) => t<'c>
-
-/** Uncurried version of [forEach2](#forEach2). */
-let forEach2U: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => unit
 
 /**
   Stops at the length of the shorter list.
@@ -449,9 +413,6 @@ let forEach2U: (t<'a>, t<'b>, (. 'a, 'b) => 'c) => unit
 */
 let forEach2: (t<'a>, t<'b>, ('a, 'b) => 'c) => unit
 
-/** Uncurried version of [reduce2](#reduce2). */
-let reduce2U: (t<'b>, t<'c>, 'a, (. 'a, 'b, 'c) => 'a) => 'a
-
 /**
   Applies `f` to each element of `firstList` and `secondList` from beginning to end. Stops with the shorter list. Function `f` has three parameters: an “accumulator” which starts with a value of `initialValue`, an item from `firstList`, and an item from `secondList`. `reduce2` returns the final value of the accumulator.
 
@@ -460,9 +421,6 @@ let reduce2U: (t<'b>, t<'c>, 'a, (. 'a, 'b, 'c) => 'a) => 'a
   ```
 */
 let reduce2: (t<'b>, t<'c>, 'a, ('a, 'b, 'c) => 'a) => 'a
-
-/** Uncurried version of [reduceReverse2](#reduceReverse2). */
-let reduceReverse2U: (t<'a>, t<'b>, 'c, (. 'c, 'a, 'b) => 'c) => 'c
 
 /**
   Applies `f` to each element of `firstList` and `secondList` from end to
@@ -477,9 +435,6 @@ let reduceReverse2U: (t<'a>, t<'b>, 'c, (. 'c, 'a, 'b) => 'c) => 'c
 */
 let reduceReverse2: (t<'a>, t<'b>, 'c, ('c, 'a, 'b) => 'c) => 'c
 
-/** Uncurried version of [every](#every). */
-let everyU: (t<'a>, (. 'a) => bool) => bool
-
 /**
   Returns `true` if all elements satisfy `pred`, where `pred` is a predicate: a function taking an element and returning a bool.
 
@@ -492,9 +447,6 @@ let everyU: (t<'a>, (. 'a) => bool) => bool
   ```
 */
 let every: (t<'a>, 'a => bool) => bool
-
-/** Uncurried version of [some](#some). */
-let someU: (t<'a>, (. 'a) => bool) => bool
 
 /**
   Returns `true` if at least _one_ of the elements in `someList` satisfies
@@ -511,9 +463,6 @@ let someU: (t<'a>, (. 'a) => bool) => bool
 */
 let some: (t<'a>, 'a => bool) => bool
 
-/** Uncurried version of [every2](#every2). */
-let every2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
-
 /**
   Returns `true` if predicate `pred(a, b)` is `true` for all pairs of elements
   up to the shorter length (i.e. `min(length(firstList), length(secondList))`)
@@ -529,9 +478,6 @@ let every2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
   ```
 */
 let every2: (t<'a>, t<'b>, ('a, 'b) => bool) => bool
-
-/** Uncurried version of [some2](#some2). */
-let some2U: (t<'a>, t<'b>, (. 'a, 'b) => bool) => bool
 
 /**
   Returns `true` if predicate `pred(a, b)` is true for any pair of elements up
@@ -565,9 +511,6 @@ let some2: (t<'a>, t<'b>, ('a, 'b) => bool) => bool
 */
 let cmpByLength: (t<'a>, t<'a>) => int
 
-/** Uncurried version of [cmp](#cmp). */
-let cmpU: (t<'a>, t<'a>, (. 'a, 'a) => int) => int
-
 /**
   Compare elements one by one `compareFn(a, b)`. `compareFn` returns a negative number if `a` is \"less than\" `b`, zero if `a` is \"equal to\" `b`, a positive number if `a` is \"greater than\" `b`.
 
@@ -594,9 +537,6 @@ let cmpU: (t<'a>, t<'a>, (. 'a, 'a) => int) => int
 */
 let cmp: (t<'a>, t<'a>, ('a, 'a) => int) => int
 
-/** Uncurried version of [eq](#eq). */
-let eqU: (t<'a>, t<'a>, (. 'a, 'a) => bool) => bool
-
 /**
   Check equality of `firstList` and `secondList` using `eqElem` for equality on
   elements, where `eqElem` is a function that returns `true` if items `x` and
@@ -613,9 +553,6 @@ let eqU: (t<'a>, t<'a>, (. 'a, 'a) => bool) => bool
 */
 let eq: (t<'a>, t<'a>, ('a, 'a) => bool) => bool
 
-/** Uncurried version of [has](#has). */
-let hasU: (t<'a>, 'b, (. 'a, 'b) => bool) => bool
-
 /**
   Returns `true` if the list contains at least one element for which
   `eqFunction(x)` returns true.
@@ -630,9 +567,6 @@ let hasU: (t<'a>, 'b, (. 'a, 'b) => bool) => bool
 */
 let has: (t<'a>, 'b, ('a, 'b) => bool) => bool
 
-/** Uncurried version of [getBy](#getBy). */
-let getByU: (t<'a>, (. 'a) => bool) => option<'a>
-
 /**
   Returns `Some(value)` for the first value in `someList` that satisfies the
   predicate function `pred`. Returns `None` if no element satisfies the function.
@@ -644,9 +578,6 @@ let getByU: (t<'a>, (. 'a) => bool) => option<'a>
   ```
 */
 let getBy: (t<'a>, 'a => bool) => option<'a>
-
-/** Uncurried version of [keep](#keep). */
-let filterU: (t<'a>, (. 'a) => bool) => t<'a>
 
 /**
   Returns a list of all elements in `someList` which satisfy the predicate function `pred`.
@@ -661,9 +592,6 @@ let filterU: (t<'a>, (. 'a) => bool) => t<'a>
 */
 let filter: (t<'a>, 'a => bool) => t<'a>
 
-/** Uncurried version of [filterWithIndex](#filterWithIndex). */
-let filterWithIndexU: (t<'a>, (. 'a, int) => bool) => t<'a>
-
 /**
   Returns a list of all elements in `someList` which satisfy the predicate function `pred`.
 
@@ -674,9 +602,6 @@ let filterWithIndexU: (t<'a>, (. 'a, int) => bool) => t<'a>
   ```
 */
 let filterWithIndex: (t<'a>, ('a, int) => bool) => t<'a>
-
-/** Uncurried version of [filterMap](#filterMap). */
-let filterMapU: (t<'a>, (. 'a) => option<'b>) => t<'b>
 
 /**
   Applies `f` to each element of `someList`. If `f(x)` returns `Some(value)`, then `value` is _kept_ in the resulting list.
@@ -698,9 +623,6 @@ let filterMapU: (t<'a>, (. 'a) => option<'b>) => t<'b>
   ```
 */
 let filterMap: (t<'a>, 'a => option<'b>) => t<'b>
-
-/** Uncurried version of [partition](#partition). */
-let partitionU: (t<'a>, (. 'a) => bool) => (t<'a>, t<'a>)
 
 /**
   Creates a pair of lists; the first list consists of all elements of `someList` that satisfy the predicate function `pred`; the second list consists of all elements of `someList` that _do not_ satisfy `pred.
@@ -729,9 +651,6 @@ let partition: (t<'a>, 'a => bool) => (t<'a>, t<'a>)
 */
 let unzip: t<('a, 'b)> => (t<'a>, t<'b>)
 
-/** Uncurried version of [getAssoc](#getAssoc). */
-let getAssocU: (t<('a, 'c)>, 'b, (. 'a, 'b) => bool) => option<'c>
-
 /**
   Return the second element of a pair in `someList` where the first element equals `k` as per the predicate function `eqFunction`, or `None` if not found.
 
@@ -745,9 +664,6 @@ let getAssocU: (t<('a, 'c)>, 'b, (. 'a, 'b) => bool) => option<'c>
 */
 let getAssoc: (t<('a, 'c)>, 'b, ('a, 'b) => bool) => option<'c>
 
-/** Uncurried version of [hasAssoc](#hasAssoc). */
-let hasAssocU: (t<('a, 'c)>, 'b, (. 'a, 'b) => bool) => bool
-
 /**
   Returns `true` if there is a pair in `someList` where the first element equals `k` as per the predicate function `eqFunction`.
 
@@ -759,9 +675,6 @@ let hasAssocU: (t<('a, 'c)>, 'b, (. 'a, 'b) => bool) => bool
   ```
 */
 let hasAssoc: (t<('a, 'c)>, 'b, ('a, 'b) => bool) => bool
-
-/** Uncurried version of [removeAssoc](#removeAssoc). */
-let removeAssocU: (t<('a, 'c)>, 'b, (. 'a, 'b) => bool) => t<('a, 'c)>
 
 /**
   Return a list after removing the first pair whose first value is `k` per the equality predicate `eqFunction`; if not found, return a new list identical to `someList`.
@@ -775,9 +688,6 @@ let removeAssocU: (t<('a, 'c)>, 'b, (. 'a, 'b) => bool) => t<('a, 'c)>
   ```
 */
 let removeAssoc: (t<('a, 'c)>, 'b, ('a, 'b) => bool) => t<('a, 'c)>
-
-/** Uncurried version of [setAssoc](#setAssoc). */
-let setAssocU: (t<('a, 'c)>, 'a, 'c, (. 'a, 'a) => bool) => t<('a, 'c)>
 
 /**
   If `k` exists in `someList` by satisfying the `eqFunction` predicate, return a new list with the key and value replaced by the new `k` and `v`; otherwise, return a new list with the pair `k`, `v` added to the head of `someList`.
@@ -799,9 +709,6 @@ let setAssocU: (t<('a, 'c)>, 'a, 'c, (. 'a, 'a) => bool) => t<('a, 'c)>
   Both the key _and_ the value are replaced in the list.
 */
 let setAssoc: (t<('a, 'c)>, 'a, 'c, ('a, 'a) => bool) => t<('a, 'c)>
-
-/** Uncurried version of [sort](#sort). */
-let sortU: (t<'a>, (. 'a, 'a) => int) => t<'a>
 
 /**
   Returns a sorted list.

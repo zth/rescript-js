@@ -54,7 +54,6 @@ let lastIndexOfOpt: (array<'a>, 'a) => option<int>
 @send external map: (array<'a>, 'a => 'b) => array<'b> = "map"
 @send external mapWithIndex: (array<'a>, ('a, int) => 'b) => array<'b> = "map"
 
-let reduceU: (array<'b>, 'a, (. 'a, 'b) => 'a) => 'a
 /**
   `reduce(xs, init, f)`
 
@@ -68,7 +67,6 @@ let reduceU: (array<'b>, 'a, (. 'a, 'b) => 'a) => 'a
 */
 let reduce: (array<'b>, 'a, ('a, 'b) => 'a) => 'a
 
-let reduceReverseU: (array<'b>, 'a, (. 'a, 'b) => 'a) => 'a
 /**
   `reduceReverse(xs, init, f)`
 
@@ -80,7 +78,6 @@ let reduceReverseU: (array<'b>, 'a, (. 'a, 'b) => 'a) => 'a
 */
 let reduceReverse: (array<'b>, 'a, ('a, 'b) => 'a) => 'a
 
-let reduceWithIndexU: (array<'a>, 'b, (. 'b, 'a, int) => 'b) => 'b
 /**
   Applies `f` to each element of `xs` from beginning to end. Function `f` has three parameters: the item from the array and an “accumulator”, which starts with a value of `init` and the index of each element. `reduceWithIndex` returns the final value of the accumulator.
 
@@ -101,7 +98,6 @@ external getUnsafe: (array<'a>, int) => 'a = "%array_unsafe_get"
 external setUnsafe: (array<'a>, int, 'a) => unit = "%array_unsafe_set"
 let findIndexOpt: (array<'a>, 'a => bool) => option<int>
 let reverse: array<'a> => array<'a>
-let filterMapU: (array<'a>, (. 'a) => option<'b>) => array<'b>
 let filterMap: (array<'a>, 'a => option<'b>) => array<'b>
 let shuffle: array<'a> => array<'a>
 let shuffleInPlace: array<'a> => unit

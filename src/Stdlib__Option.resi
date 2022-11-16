@@ -38,9 +38,6 @@
    let someString: option<string> = Some(\"hello\")
    ```
 */
-/** Uncurried version of `filter` */
-let filterU: (option<'a>, (. 'a) => bool) => option<'a>
-
 /**
    If `optionValue` is `Some(value)` and `p(value) = true`, it returns `Some(value)`; otherwise returns `None`
 
@@ -51,9 +48,6 @@ let filterU: (option<'a>, (. 'a) => bool) => option<'a>
    ```
 */
 let filter: (option<'a>, 'a => bool) => option<'a>
-
-/** Uncurried version of `forEach` */
-let forEachU: (option<'a>, (. 'a) => unit) => unit
 
 /**
    If `optionValue` is `Some(value`), it calls `f(value)`; otherwise returns `()`
@@ -84,9 +78,6 @@ let getExn: option<'a> => 'a
 */
 external getUnsafe: option<'a> => 'a = "%identity"
 
-/** Uncurried version of `mapWithDefault` */
-let mapWithDefaultU: (option<'a>, 'b, (. 'a) => 'b) => 'b
-
 /**
    If `optionValue` is of `Some(value)`,
    this function returns that value applied with `f`, in other words `f(value)`.
@@ -103,9 +94,6 @@ let mapWithDefaultU: (option<'a>, 'b, (. 'a) => 'b) => 'b
 */
 let mapWithDefault: (option<'a>, 'b, 'a => 'b) => 'b
 
-/** Uncurried version of `map` */
-let mapU: (option<'a>, (. 'a) => 'b) => option<'b>
-
 /**
    If `optionValue` is `Some(value)` this returns `f(value)`, otherwise it returns `None`.
 
@@ -116,9 +104,6 @@ let mapU: (option<'a>, (. 'a) => 'b) => option<'b>
    ```
 */
 let map: (option<'a>, 'a => 'b) => option<'b>
-
-/** Uncurried version of `flatMap` */
-let flatMapU: (option<'a>, (. 'a) => option<'b>) => option<'b>
 
 /**
    If `optionValue` is `Some(value)`, returns `f(value)`, otherwise returns
@@ -198,11 +183,6 @@ let isSome: option<'a> => bool
 let isNone: option<'a> => bool
 
 /**
-   Uncurried version of `eq`
-*/
-let eqU: (option<'a>, option<'b>, (. 'a, 'b) => bool) => bool
-
-/**
    Evaluates two optional values for equality with respect to a predicate
    function. If both `optValue1` and `optValue2` are `None`, returns `true`.
    If one of the arguments is `Some(value)` and the other is `None`, returns
@@ -226,9 +206,6 @@ let eqU: (option<'a>, option<'b>, (. 'a, 'b) => bool) => bool
    ```
 */
 let eq: (option<'a>, option<'b>, ('a, 'b) => bool) => bool
-
-/** Uncurried version of `cmp` */
-let cmpU: (option<'a>, option<'b>, (. 'a, 'b) => int) => int
 
 /**
    `cmp(optValue1, optValue2, comparisonFunction)` compares two optional values

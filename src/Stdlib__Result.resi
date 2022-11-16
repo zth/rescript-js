@@ -58,7 +58,6 @@ type t<'a, 'b> = result<'a, 'b> = Ok('a) | Error('b)
 */
 let getExn: t<'a, 'b> => 'a
 
-let mapWithDefaultU: (t<'a, 'c>, 'b, (. 'a) => 'b) => 'b
 /**
   `mapWithDefault(res, default, f)`: When res is `Ok(n)`, returns `f(n)`,
   otherwise `default`.
@@ -73,7 +72,6 @@ let mapWithDefaultU: (t<'a, 'c>, 'b, (. 'a) => 'b) => 'b
 */
 let mapWithDefault: (t<'a, 'c>, 'b, 'a => 'b) => 'b
 
-let mapU: (t<'a, 'c>, (. 'a) => 'b) => t<'b, 'c>
 /**
   `map(res, f)`: When res is `Ok(n)`, returns `Ok(f(n))`. Otherwise returns res
   unchanged. Function `f` takes a value of the same type as `n` and returns an
@@ -89,7 +87,6 @@ let mapU: (t<'a, 'c>, (. 'a) => 'b) => t<'b, 'c>
 */
 let map: (t<'a, 'c>, 'a => 'b) => t<'b, 'c>
 
-let flatMapU: (t<'a, 'c>, (. 'a) => t<'b, 'c>) => t<'b, 'c>
 /**
   `flatMap(res, f)`: When res is `Ok(n)`, returns `f(n)`. Otherwise, returns res
   unchanged. Function `f` takes a value of the same type as `n` and returns a
@@ -136,7 +133,6 @@ let isOk: t<'a, 'b> => bool
 */
 let isError: t<'a, 'b> => bool
 
-let eqU: (t<'a, 'c>, t<'b, 'd>, (. 'a, 'b) => bool) => bool
 /**
   `eq(res1, res2, f)`: Determine if two `Result` variables are equal with
   respect to an equality function. If `res1` and `res2` are of the form `Ok(n)`
@@ -166,7 +162,6 @@ let eqU: (t<'a, 'c>, t<'b, 'd>, (. 'a, 'b) => bool) => bool
 */
 let eq: (t<'a, 'c>, t<'b, 'd>, ('a, 'b) => bool) => bool
 
-let cmpU: (t<'a, 'c>, t<'b, 'd>, (. 'a, 'b) => int) => int
 /**
   `cmp(res1, res2, f)`: Compare two `Result` variables with respect to a
   comparison function. The comparison function returns -1 if the first variable
