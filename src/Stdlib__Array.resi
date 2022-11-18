@@ -27,7 +27,7 @@ external spliceInPlace: (array<'a>, ~start: int, ~remove: int, ~insert: array<'a
 @send external unshift: (array<'a>, 'a) => unit = "unshift"
 @variadic @send external unshiftMany: (array<'a>, array<'a>) => unit = "unshift"
 @send external concat: (array<'a>, array<'a>) => array<'a> = "concat"
-@variadic @send external concatMany: array<array<'a>> => array<'a> = "concat"
+@variadic @send external concatMany: (array<'a>, array<array<'a>>) => array<'a> = "concat"
 @send external includes: (array<'a>, 'a) => bool = "includes"
 @send external indexOf: (array<'a>, 'a) => int = "indexOf"
 let indexOfOpt: (array<'a>, 'a) => option<int>

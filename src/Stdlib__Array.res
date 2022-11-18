@@ -51,7 +51,7 @@ external spliceInPlace: (array<'a>, ~start: int, ~remove: int, ~insert: array<'a
 
 @send external concat: (array<'a>, array<'a>) => array<'a> = "concat"
 
-@variadic @send external concatMany: array<array<'a>> => array<'a> = "concat"
+@variadic @send external concatMany: (array<'a>, array<array<'a>>) => array<'a> = "concat"
 
 @send external includes: (array<'a>, 'a) => bool = "includes"
 
@@ -193,4 +193,5 @@ let filterMapU = (a, f) => {
 
 let filterMap = (a, f) => filterMapU(a, (. a) => f(a))
 
-let flatMap = (a, f) => concatMany(map(a, f))
+// TODO: Change this implementation?
+let flatMap = (a, f) => []->concatMany(map(a, f))
