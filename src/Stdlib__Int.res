@@ -19,10 +19,14 @@ module Constants = {
 external toFloat: int => float = "%identity"
 external fromFloat: float => int = "%intoffloat"
 
+// parseInt's return type is a float because it can be NaN
+@val external parseInt: 'a => float = "parseInt"
+@val external parseIntWithRadix: ('a, ~radix: int) => float = "parseInt"
+
 let fromString = (~radix=?, x) => {
   let maybeInt = switch radix {
-  | Some(radix) => Stdlib__Float.parseIntWithRadix(x, ~radix)
-  | None => Stdlib__Float.parseInt(x)
+  | Some(radix) => parseIntWithRadix(x, ~radix)
+  | None => parseInt(x)
   }
   if Stdlib__Float.isNaN(maybeInt) {
     None

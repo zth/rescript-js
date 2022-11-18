@@ -8,9 +8,7 @@ module Constants: {
 }
 @val external isNaN: float => bool = "isNaN"
 @val external isFinite: float => bool = "isFinite"
-@val external parseFloat: 'a => float = "parseFloat"
-@val external parseInt: 'a => float = "parseInt"
-@val external parseIntWithRadix: ('a, ~radix: int) => float = "parseInt"
+@val external parseFloat: string => float = "parseFloat"
 @send external toExponential: float => string = "toExponential"
 @send external toExponentialWithPrecision: (float, ~digits: int) => string = "toExponential"
 @send external toFixed: float => string = "toFixed"

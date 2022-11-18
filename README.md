@@ -99,6 +99,8 @@ This standard library is based on `rescript-js`, but with a few tweaks and modif
 ### Float
 
 - `fromString` is copied from `Belt`. Main difference is that `fromString` now returns an `option` that's `None` if the parsed float is `NaN`. If you want the raw JS behavior of potentially parsing a float to `NaN` you can use `Float.parseFloat(string)`.
+- `parseInt` and `parseIntWithRadix` are removed. They were present in `Float` as a way of dealing with `parseInt` potentially returning `NaN`, which is a float.
+- `parseFloat` takes a `string` and not any type `'a`.
 
 ### String
 
