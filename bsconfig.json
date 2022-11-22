@@ -1,5 +1,5 @@
 {
-  "name": "rescript-js",
+  "name": "@gabnor/rescript-stdlib",
   "version": "0.1.0",
   "sources": [
     {
@@ -12,12 +12,11 @@
       "type": "dev"
     }
   ],
-  "suffix": ".bs.js",
+  "suffix": ".mjs",
   "package-specs": {
-    "module": "commonjs",
+    "module": "es6",
     "in-source": true
   },
-  "bs-dependencies": ["@ryyppy/rescript-promise"],
   "warnings": {
     "error": "+101"
   }

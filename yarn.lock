@@ -2,12 +2,7 @@
 # yarn lockfile v1
 
 
-"@ryyppy/rescript-promise@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@ryyppy/rescript-promise/-/rescript-promise-2.1.0.tgz#a33861274c41360cfbe872cf489f3dcb8dd526e6"
-  integrity sha512-+dW6msBrj2Lr2hbEMX+HoWCvN89qVjl94RwbYWJgHQuj8jm/izdPC0YzxgpGoEFdeAEW2sOozoLcYHxT6o5WXQ==
-
-rescript@^10.0.0-rc.1:
-  version "10.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/rescript/-/rescript-10.0.0-rc.1.tgz#c9b551e95eb85f00ec6cede114ba5fb3eac940ac"
-  integrity sha512-NrB+hr1TcK7ZORw/wu6eAd5J4tu6PwbN5rmcx8NUiVYpuaPAXmX/4DpC0gV2j86cU2QGK/DrEIWeZlchWNDKWg==
+rescript@^10.1.0-rc.2:
+  version "10.1.0-rc.2"
+  resolved "https://registry.yarnpkg.com/rescript/-/rescript-10.1.0-rc.2.tgz#c24bfe853f97c0ed6556ebd388e84b76e1cf994f"
+  integrity sha512-CZuzCjc4gc78WBd/oEUmrz8k6hoR3DiEo6A1myJ9EkkBV97jZM92IcFSxbQJZ6SFr4bvsym4WbvNfQ0AYBXQ3g==

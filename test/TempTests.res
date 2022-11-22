@@ -1,10 +1,10 @@
-open ReScriptJs.Js
+open RescriptStdlib
 
 Console.info("")
 Console.info("Array")
 Console.info("---")
 let array = [1, 2, 3, 4]
-Console.info(array->Array.map(x => x * 2)->Array.reduce((a, b) => a + b, 0))
+Console.info(array->Array.map(x => x * 2)->Array.reduce(0, (a, b) => a + b))
 Console.info(typeof(array))
 
 Console.info("")
@@ -134,9 +134,9 @@ let regex = RegExp.fromString("hello(\\w+)")
 let string = "helloworld"
 Console.log(regex->RegExp.test(string))
 let result = regex->RegExp.exec(string)
-Console.log(result->Belt.Option.map(RegExp.Result.input))
-Console.log(result->Belt.Option.map(RegExp.Result.index))
-Console.log(result->Belt.Option.map(RegExp.Result.matches))
+Console.log(result->Option.map(RegExp.Result.input))
+Console.log(result->Option.map(RegExp.Result.index))
+Console.log(result->Option.map(RegExp.Result.matches))
 
 Console.info("")
 Console.info("Set")
@@ -199,7 +199,6 @@ let z = Float.mod(1.2, 1.4)
 let intFromBigInt = BigInt.fromString("10000000000")->BigInt.toInt
 
 module Bugfix = {
-  open ReScriptJs
   @obj external foo: (~bar: string=?, unit) => _ = ""
   Console.log(foo(~bar="1", ()))
 }
