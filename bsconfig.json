@@ -12,9 +12,9 @@
       "type": "dev"
     }
   ],
-  "suffix": ".bs.js",
+  "suffix": ".mjs",
   "package-specs": {
-    "module": "commonjs",
+    "module": "es6",
     "in-source": true
   },
   "warnings": {
