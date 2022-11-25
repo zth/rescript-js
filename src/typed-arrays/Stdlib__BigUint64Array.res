@@ -1,3 +1,4 @@
+@@uncurried
 type t = Stdlib__TypedArray.t<Stdlib__BigInt.t>
 
 module Constants = {

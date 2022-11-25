@@ -1,3 +1,4 @@
+@@uncurried
 module Constants = {
   @val external e: float = "Math.E"
   @val external ln2: float = "Math.LN2"

@@ -1,3 +1,4 @@
+@@uncurried
 /* Copyright (C) 2017 Hongbo Zhang, Authors of ReScript
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,51 +25,51 @@
 
 let filterU = (opt, p) =>
   switch opt {
-  | Some(x) as some if p(. x) => some
+  | Some(x) as some if p(x) => some
   | _ => None
   }
 
-let filter = (opt, p) => filterU(opt, (. x) => p(x))
+let filter = (opt, p) => filterU(opt, x => p(x))
 
 let forEachU = (opt, f) =>
   switch opt {
-  | Some(x) => f(. x)
+  | Some(x) => f(x)
   | None => ()
   }
 
-let forEach = (opt, f) => forEachU(opt, (. x) => f(x))
+let forEach = (opt, f) => forEachU(opt, x => f(x))
 
 let getExn = x =>
   switch x {
   | Some(x) => x
-  | None => raise(Not_found)
+  | None => raise(. Not_found)
   }
 
 external getUnsafe: option<'a> => 'a = "%identity"
 
 let mapWithDefaultU = (opt, default, f) =>
   switch opt {
-  | Some(x) => f(. x)
+  | Some(x) => f(x)
   | None => default
   }
 
-let mapWithDefault = (opt, default, f) => mapWithDefaultU(opt, default, (. x) => f(x))
+let mapWithDefault = (opt, default, f) => mapWithDefaultU(opt, default, x => f(x))
 
 let mapU = (opt, f) =>
   switch opt {
-  | Some(x) => Some(f(. x))
+  | Some(x) => Some(f(x))
   | None => None
   }
 
-let map = (opt, f) => mapU(opt, (. x) => f(x))
+let map = (opt, f) => mapU(opt, x => f(x))
 
 let flatMapU = (opt, f) =>
   switch opt {
-  | Some(x) => f(. x)
+  | Some(x) => f(x)
   | None => None
   }
 
-let flatMap = (opt, f) => flatMapU(opt, (. x) => f(x))
+let flatMap = (opt, f) => flatMapU(opt, x => f(x))
 
 let getWithDefault = (opt, default) =>
   switch opt {
@@ -95,19 +96,19 @@ let eqU = (a, b, f) =>
   | Some(a) =>
     switch b {
     | None => false
-    | Some(b) => f(. a, b)
+    | Some(b) => f(a, b)
     }
   | None => b == None
   }
 
-let eq = (a, b, f) => eqU(a, b, (. x, y) => f(x, y))
+let eq = (a, b, f) => eqU(a, b, (x, y) => f(x, y))
 
 let cmpU = (a, b, f) =>
   switch (a, b) {
-  | (Some(a), Some(b)) => f(. a, b)
+  | (Some(a), Some(b)) => f(a, b)
   | (None, Some(_)) => -1
   | (Some(_), None) => 1
   | (None, None) => 0
   }
 
-let cmp = (a, b, f) => cmpU(a, b, (. x, y) => f(x, y))
+let cmp = (a, b, f) => cmpU(a, b, (x, y) => f(x, y))

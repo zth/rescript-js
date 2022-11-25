@@ -1,3 +1,4 @@
+@@uncurried
 external getUnsafe: (array<'a>, int) => 'a = "%array_unsafe_get"
 external setUnsafe: (array<'a>, int, 'a) => unit = "%array_unsafe_set"
 
@@ -99,34 +100,34 @@ let lastIndexOfOpt = (arr, item) =>
 @send external mapWithIndex: (array<'a>, ('a, int) => 'b) => array<'b> = "map"
 
 let reduceU = (a, x, f) => {
-  let r = ref(x)
+  let r = ref(. x)
   for i in 0 to length(a) - 1 {
-    r.contents = f(. r.contents, getUnsafe(a, i))
+    r.contents = f(r.contents, getUnsafe(a, i))
   }
   r.contents
 }
 
-let reduce = (a, x, f) => reduceU(a, x, (. a, b) => f(a, b))
+let reduce = (a, x, f) => reduceU(a, x, (a, b) => f(a, b))
 
 let reduceWithIndexU = (a, x, f) => {
-  let r = ref(x)
+  let r = ref(. x)
   for i in 0 to length(a) - 1 {
-    r.contents = f(. r.contents, getUnsafe(a, i), i)
+    r.contents = f(r.contents, getUnsafe(a, i), i)
   }
   r.contents
 }
 
-let reduceWithIndex = (a, x, f) => reduceWithIndexU(a, x, (. a, b, c) => f(a, b, c))
+let reduceWithIndex = (a, x, f) => reduceWithIndexU(a, x, (a, b, c) => f(a, b, c))
 
 let reduceReverseU = (a, x, f) => {
-  let r = ref(x)
+  let r = ref(. x)
   for i in length(a) - 1 downto 0 {
-    r.contents = f(. r.contents, getUnsafe(a, i))
+    r.contents = f(r.contents, getUnsafe(a, i))
   }
   r.contents
 }
 
-let reduceReverse = (a, x, f) => reduceReverseU(a, x, (. a, b) => f(a, b))
+let reduceReverse = (a, x, f) => reduceReverseU(a, x, (a, b) => f(a, b))
 
 @send external some: (array<'a>, 'a => bool) => bool = "some"
 @send external someWithIndex: (array<'a>, ('a, int) => bool) => bool = "some"
@@ -164,7 +165,7 @@ let reverse = xs => {
 let shuffleInPlace = xs => {
   let len = length(xs)
   for i in 0 to len - 1 {
-    swapUnsafe(xs, i, Js.Math.random_int(i, len)) /* [i,len) */
+    swapUnsafe(xs, i, Js.Math.random_int(. i, len)) /* [i,len) */
   }
 }
 
@@ -177,10 +178,10 @@ let shuffle = xs => {
 let filterMapU = (a, f) => {
   let l = length(a)
   let r = makeUninitializedUnsafe(l)
-  let j = ref(0)
+  let j = ref(. 0)
   for i in 0 to l - 1 {
     let v = getUnsafe(a, i)
-    switch f(. v) {
+    switch f(v) {
     | None => ()
     | Some(v) =>
       setUnsafe(r, j.contents, v)
@@ -191,7 +192,7 @@ let filterMapU = (a, f) => {
   r
 }
 
-let filterMap = (a, f) => filterMapU(a, (. a) => f(a))
+let filterMap = (a, f) => filterMapU(a, a => f(a))
 
 // TODO: Change this implementation?
 let flatMap = (a, f) => []->concatMany(map(a, f))

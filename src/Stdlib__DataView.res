@@ -1,3 +1,4 @@
+@@uncurried
 type t
 
 @new external fromBuffer: Stdlib__ArrayBuffer.t => t = "DataView"

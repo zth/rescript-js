@@ -1,3 +1,4 @@
+@@uncurried
 type timeoutId = Js.Global.timeoutId
 
 @val external setTimeout: (unit => unit, int) => timeoutId = "setTimeout"

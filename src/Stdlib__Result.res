@@ -1,3 +1,4 @@
+@@uncurried
 /* Copyright (C) 2017 Hongbo Zhang, Authors of ReScript
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,32 +28,32 @@ type t<'a, 'b> = result<'a, 'b> = Ok('a) | Error('b)
 let getExn = x =>
   switch x {
   | Ok(x) => x
-  | Error(_) => raise(Not_found)
+  | Error(_) => raise(. Not_found)
   }
 
 let mapWithDefaultU = (opt, default, f) =>
   switch opt {
-  | Ok(x) => f(. x)
+  | Ok(x) => f(x)
   | Error(_) => default
   }
 
-let mapWithDefault = (opt, default, f) => mapWithDefaultU(opt, default, (. x) => f(x))
+let mapWithDefault = (opt, default, f) => mapWithDefaultU(opt, default, x => f(x))
 
 let mapU = (opt, f) =>
   switch opt {
-  | Ok(x) => Ok(f(. x))
+  | Ok(x) => Ok(f(x))
   | Error(y) => Error(y)
   }
 
-let map = (opt, f) => mapU(opt, (. x) => f(x))
+let map = (opt, f) => mapU(opt, x => f(x))
 
 let flatMapU = (opt, f) =>
   switch opt {
-  | Ok(x) => f(. x)
+  | Ok(x) => f(x)
   | Error(y) => Error(y)
   }
 
-let flatMap = (opt, f) => flatMapU(opt, (. x) => f(x))
+let flatMap = (opt, f) => flatMapU(opt, x => f(x))
 
 let getWithDefault = (opt, default) =>
   switch opt {
@@ -74,20 +75,20 @@ let isError = x =>
 
 let eqU = (a, b, f) =>
   switch (a, b) {
-  | (Ok(a), Ok(b)) => f(. a, b)
+  | (Ok(a), Ok(b)) => f(a, b)
   | (Error(_), Ok(_))
   | (Ok(_), Error(_)) => false
   | (Error(_), Error(_)) => true
   }
 
-let eq = (a, b, f) => eqU(a, b, (. x, y) => f(x, y))
+let eq = (a, b, f) => eqU(a, b, (x, y) => f(x, y))
 
 let cmpU = (a, b, f) =>
   switch (a, b) {
-  | (Ok(a), Ok(b)) => f(. a, b)
+  | (Ok(a), Ok(b)) => f(a, b)
   | (Error(_), Ok(_)) => -1
   | (Ok(_), Error(_)) => 1
   | (Error(_), Error(_)) => 0
   }
 
-let cmp = (a, b, f) => cmpU(a, b, (. x, y) => f(x, y))
+let cmp = (a, b, f) => cmpU(a, b, (x, y) => f(x, y))

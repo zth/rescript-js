@@ -1,3 +1,4 @@
+@@uncurried
 type t
 
 @new external make: string => t = "Intl.Locale"

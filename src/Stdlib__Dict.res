@@ -1,3 +1,4 @@
+@@uncurried
 type t<'a> = Js.Dict.t<'a>
 
 @get_index external get: (t<'a>, string) => option<'a> = ""

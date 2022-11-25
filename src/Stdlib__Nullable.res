@@ -1,3 +1,4 @@
+@@uncurried
 type t<'a> = Js.Nullable.t<'a>
 
 external null: t<'a> = "#null"

@@ -1,3 +1,4 @@
+@@uncurried
 type t = Stdlib__TypedArray.t<float>
 
 module Constants = {
