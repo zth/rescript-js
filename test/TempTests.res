@@ -1,4 +1,4 @@
-open RescriptStdlib
+open ReScriptStdLib
 
 Console.info("")
 Console.info("Array")
