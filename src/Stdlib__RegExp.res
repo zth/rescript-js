@@ -1,3 +1,4 @@
+@@uncurried
 type t = Js.Re.t
 
 module Result = {

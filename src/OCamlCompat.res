@@ -1,3 +1,4 @@
+@@uncurried
 module Array = Array
 module List = List
 module Set = Set

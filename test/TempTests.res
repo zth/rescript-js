@@ -1,4 +1,5 @@
-open RescriptStdlib
+@@uncurried
+open ReScriptStdLib
 
 Console.info("")
 Console.info("Array")
@@ -169,7 +170,7 @@ Console.info("Symbol")
 Console.info("---")
 let x = Symbol.getFor("Foo")
 Console.log(x)
-let array: array<string> = Array.fromIterator(String.getSymbolUnsafe("foo", Symbol.iterator)(.))
+let array: array<string> = Array.fromIterator(String.getSymbolUnsafe("foo", Symbol.iterator)())
 Console.log(array)
 
 Console.info("")

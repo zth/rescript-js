@@ -1,3 +1,4 @@
+@@uncurried
 type t = Js.TypedArray2.ArrayBuffer.t
 
 @new external make: int => t = "ArrayBuffer"

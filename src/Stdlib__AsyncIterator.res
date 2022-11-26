@@ -1,3 +1,4 @@
+@@uncurried
 type t<'a>
 
 type value<'a> = {

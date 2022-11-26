@@ -1,3 +1,4 @@
+@@uncurried
 // The +'a marks the abstract type parameter as covariant, which essentially means that
 // a value of type 'a is immutable and may not be used in some mutable context.
 //
@@ -49,7 +50,7 @@ Promise.make((resolve, reject) => {
 ```
 */
 @new
-external make: ((@uncurry (. 'a) => unit, (. 'e) => unit) => unit) => t<'a> = "Promise"
+external make: (('a => unit, 'e => unit) => unit) => t<'a> = "Promise"
 
 /**
 `catch(promise, errorCallback)` registers an exception handler in a promise chain.
@@ -130,7 +131,7 @@ resolve(\"Anna\")
 In case you want to return another promise in your `callback`, consider using \`then\` instead.
 */
 @send
-external thenResolve: (t<'a>, @uncurry ('a => 'b)) => t<'b> = "then"
+external thenResolve: (t<'a>, 'a => 'b) => t<'b> = "then"
 
 /**
 [finally(promise, callback)] is used to execute a function that is called no matter if a promise

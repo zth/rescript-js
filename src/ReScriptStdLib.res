@@ -1,3 +1,4 @@
+@@uncurried
 module Array = Stdlib__Array
 module Console = Stdlib__Console
 module DataView = Stdlib__DataView

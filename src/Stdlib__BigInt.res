@@ -1,3 +1,4 @@
+@@uncurried
 type t = Js.Types.bigint_val
 
 @val external asIntN: (~width: int, t) => t = "BigInt.asIntN"

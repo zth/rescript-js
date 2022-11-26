@@ -1,3 +1,4 @@
+@@uncurried
 type t = Js.Json.t
 
 type jsonReviver

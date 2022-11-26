@@ -1,3 +1,4 @@
+@@uncurried
 type t = Js.Date.t
 
 module Time = {

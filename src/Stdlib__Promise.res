@@ -1,7 +1,8 @@
+@@uncurried
 type t<+'a> = promise<'a>
 
 @new
-external make: ((@uncurry (. 'a) => unit, (. 'e) => unit) => unit) => t<'a> = "Promise"
+external make: (('a => unit, 'e => unit) => unit) => t<'a> = "Promise"
 
 @val @scope("Promise")
 external resolve: 'a => t<'a> = "resolve"
@@ -11,7 +12,7 @@ let then: (promise<'a>, 'a => promise<'b>) => promise<'b> = %raw(`function(p, co
 }`)
 
 @send
-external thenResolve: (t<'a>, @uncurry ('a => 'b)) => t<'b> = "then"
+external thenResolve: (t<'a>, 'a => 'b) => t<'b> = "then"
 
 @send external finally: (t<'a>, unit => unit) => t<'a> = "finally"
 
@@ -44,7 +45,7 @@ let _catch: (promise<'a>, error => promise<'a>) => promise<'a> = %raw(`function(
 
 let catch = (promise: promise<'a>, callback: exn => promise<'a>): promise<'a> => {
   _catch(promise, err => {
-    callback(Js.Exn.anyToExnInternal(err))
+    callback(Js.Exn.anyToExnInternal(. err))
   })
 }
 

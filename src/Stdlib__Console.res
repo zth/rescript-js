@@ -1,3 +1,4 @@
+@@uncurried
 @val external log: 'a => unit = "console.log"
 @val external log2: ('a, 'b) => unit = "console.log"
 @val external log3: ('a, 'b, 'c) => unit = "console.log"

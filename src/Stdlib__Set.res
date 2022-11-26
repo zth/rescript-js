@@ -1,3 +1,4 @@
+@@uncurried
 type t<'a>
 
 @new external make: unit => t<'a> = "Set"

@@ -1,3 +1,4 @@
+@@uncurried
 @obj external empty: unit => {..} = ""
 
 @val external is: ('a, 'b) => bool = "Object.is"

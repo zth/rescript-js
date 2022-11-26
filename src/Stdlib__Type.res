@@ -1,3 +1,4 @@
+@@uncurried
 type t = [#undefined | #object | #boolean | #number | #bigint | #string | #symbol | #function]
 
 external typeof: 'a => t = "#typeof"

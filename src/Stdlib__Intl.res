@@ -1,3 +1,4 @@
+@@uncurried
 module Collator = Stdlib__Intl__Collator
 module DateTimeFormat = Stdlib__Intl__DateTimeFormat
 module Locale = Stdlib__Intl__Locale

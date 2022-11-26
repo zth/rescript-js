@@ -1,3 +1,4 @@
+@@uncurried
 type t<'a> = Js.Undefined.t<'a>
 
 external asNullable: t<'a> => Stdlib__Nullable.t<'a> = "%identity"

@@ -1,3 +1,4 @@
+@@uncurried
 type undefined = {__rescript_private_none: bool}
 
 let encodeUndefined = (_key, value) =>

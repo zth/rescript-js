@@ -1,3 +1,4 @@
+@@uncurried
 type t = Js.Exn.t
 
 external fromException: exn => option<t> = "?as_js_exn"

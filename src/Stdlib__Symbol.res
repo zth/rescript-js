@@ -1,3 +1,4 @@
+@@uncurried
 type t
 
 @val external make: string => t = "Symbol"

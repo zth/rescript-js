@@ -1,3 +1,4 @@
+@@uncurried
 @val external make: 'a => string = "String"
 
 @val external fromCharCode: int => string = "String.fromCharCode"
